@@ -1,11 +1,9 @@
 ---   
 layout: post
 title: "Tracking users login in Oracle DB"
-subtitle: "Can you improve that?"
-date: 2020 04 04 10:45:13  0400
-background: '/img/posts/06.jpg'
+date:   2020-04-04
+background: "/img/posts/06.jpg"
 ---   
-
 # Tracking users logon
 
 DBA_USERS describes all users of the database.
