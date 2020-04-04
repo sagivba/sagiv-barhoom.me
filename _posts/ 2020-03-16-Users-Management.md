@@ -1,35 +1,39 @@
 ---   
 layout: post
-title: "Mangeing users and profiles Oracle DB"
+title: "Mangeing users and profiles -  Oracle DB"
 subtitle: "Simple usage an examples - of user and profiles management"
-date: 2020 02 17 10:45:13  0400
+date: 2020-03-16
 background: '/img/posts/06.jpg'
 ---   
 
-# mangeing users and profiles
-## users
-### list users
+# Managing users and profiles on Oracle DB
+## Users:
+### List all  users
 ``` sql
 SELECT *
 FROM dba_users u
 WHERE u.username LIKE 'LAMDANRUN';
 ```
-### unlock user
+### Unlock user
 ``` sql
 ALTER USER iwebrun ACCOUNT UNLOCK;
 ```
 
-### change user password 
+### Change user password 
 ``` sql
 ALTER USER LAMDANRUN IDENTIFIED BY strongpassword;
 ```
-## profiles
-### list profiles
-#### only profiles
+## Profiles
+## Before you start 
+Remember  the parameter ```RESOURCE_LIMIT``` determines whether resource limits are enforced in database profiles.
+chek this parameter value and only then handle re profiles when needed.
+tou can chec the value by using ```show parameter RESOURCE_LIMIT``` in sqlplus. 
+### List profiles
+#### List only profiles
 ```sql
 SELECT * FROM dba_profiles dp
 ```
-#### list profiles and users and resource_name
+#### List profiles and users and resource_name
 ```sql
   SELECT du.username,
          du.profile,
@@ -44,8 +48,8 @@ ORDER BY 2, 1
 ```
 
 
-### change user profile 
-#### prevent lock
+### Change user profile 
+#### An Example  - prevent lock
 
 ``` sql
 CREATE PROFILE umlimited_attempts LIMIT
