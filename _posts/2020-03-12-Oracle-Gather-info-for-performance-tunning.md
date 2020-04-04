@@ -2,7 +2,7 @@
 layout: post
 title: "Gather information for performance tunning"
 subtitle: "Simple usage an examples - of user and profiles management"
-date: 2020 02 17 10:45:13  0400
+date: 2020-02-17
 background: '/img/posts/06.jpg'
 ---  
 # Gather info for performance tunning
