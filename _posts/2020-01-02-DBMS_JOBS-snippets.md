@@ -3,7 +3,7 @@ layout: post
 title:  "DBMS_JOBS snippets"
 author: "Sagiv Barhoom"
 date:   2020-01-02
-categories: ORACLE,DBA 
+categories: ORACLE 
 ---
 
 # DBMS_JOBS snippets
