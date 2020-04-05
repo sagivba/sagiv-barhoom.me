@@ -17,12 +17,12 @@ WHERE u.username LIKE 'WEBUSER';
 ```
 ### Unlock user
 ``` sql
-ALTER USER iwebrun ACCOUNT UNLOCK;
+ALTER USER WEBUSER ACCOUNT UNLOCK;
 ```
 
 ### Change user password 
 ``` sql
-ALTER USER LAMDANRUN IDENTIFIED BY strongpassword;
+ALTER USER WEBUSER IDENTIFIED BY strongpassword;
 ```
 ## Profiles
 ## Before you start 
@@ -60,7 +60,7 @@ ALTER USER LAMDANRUN PROFILE  umlimited_attempts;
 
 SELECT username, profile, account_status
   FROM dba_users
- WHERE username = 'LAMDANRUN';
+ WHERE username = 'WEBUSER';
 ```
 
 ``` sql
@@ -73,7 +73,7 @@ SELECT username, profile, account_status
    WHERE     dp.resource_type = 'KERNEL'
          AND dp.LIMIT <> 'DEFAULT'
          AND dp.LIMIT <> 'UNLIMITED'
-ORDER BY 2, 1
+ORDER BY 2, 1;
 ```
 ``` sql
 SELECT DBMS_METADATA.get_ddl ('PROFILE', profile) AS profile_ddl
