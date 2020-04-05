@@ -3,7 +3,7 @@ layout: post
 title:  "DBMS_JOBS snippets"
 author: "Sagiv Barhoom"
 date:   2020-01-02
-categories: Chemistry 
+categories: ORACLE,DBA 
 ---
 
 # DBMS_JOBS snippets
@@ -25,7 +25,7 @@ END;
 ```
 
 ## Find broken jobs
-as sys user run the example query bellow:
+As sys user run the example query bellow:
 ```sql
 SELECT
  job, log_user, priv_user,schema_user, last_date, next_date,what, broken, failures 
@@ -34,17 +34,17 @@ FROM dba_jobs j
 WHERE j.broken='Y'
 ```
 
-## Fix broken job
-run the package bellow as  *USER*:
+## Fix broken job 1864
+Run the package bellow as  *USER*:
 ```sql
 EXEC dbms_job.broken(1864, FALSE);
 commit;
 ```
 
-## Remove job
+## Remove job 1864
 ```sql
 BEGIN
-   DBMS_JOB.REMOVE(14144);
+   DBMS_JOB.REMOVE(1864);
    COMMIT;
 END; 
 ```
