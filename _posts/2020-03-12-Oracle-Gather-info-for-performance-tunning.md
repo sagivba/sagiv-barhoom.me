@@ -4,6 +4,7 @@ title: "Gather information for performance tunning"
 subtitle: "Simple usage an examples - of user and profiles management"
 date: 2020-02-17
 background: '/img/posts/06.jpg'
+categories: Oracle,DBA
 ---  
 # Gather info for performance tunning
 ## if you know what is running slow:
