@@ -1,19 +1,19 @@
 ---   
 layout: post
 title: "Gather information for performance tunning"
-subtitle: "Simple usage an examples - of user and profiles management"
+subtitle: "Collecting info using explain-plan, ASH reprot and AWR report"
 date: 2020-02-17
 background: '/img/posts/06.jpg'
 categories: Oracle
 ---  
 # Gather info for performance tunning
-## if you know what is running slow:
+## If you know what is running slow:
 1. Collect select statment from the programmer
 2. Get explain plans (text file)
 3. Get plan statistics (html file)
 4. Get ASH reprot (html file)
 5. Get AWR reprot (html file)
-
+Analize it will be done in adifferent Post
 
 ## if you *do not* know what is running slow:
 1. Run the program with the programmer
