@@ -7,7 +7,7 @@ categories: ORACLE
 ---
 
 # DBMS_JOBS snippets
-
+Here some basic snippets to mange ```user_jobs```/```dba_jobs```...
 ## Create job
 ```sql
 DECLARE
