@@ -13,7 +13,7 @@ categories: Oracle
 ``` sql
 SELECT *
 FROM dba_users u
-WHERE u.username LIKE 'LAMDANRUN';
+WHERE u.username LIKE 'WEBUSER';
 ```
 ### Unlock user
 ``` sql
