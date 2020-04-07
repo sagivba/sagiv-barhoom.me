@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  "Analazing archive files using Oracle log miner"
+title:  "Analyzing archive files using Oracle log miner"
 author: "Sagiv Barhoom"
 date:   2020-03-15
 categories: ORACLE 
 ---
-# Analazing archive files using Oracle log miner
+# Analyzing archive files using Oracle log miner
 
 ## Where are the archive files located?
 ```sql
