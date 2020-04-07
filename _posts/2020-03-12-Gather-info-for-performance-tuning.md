@@ -1,12 +1,12 @@
 ---   
 layout: post
-title: "Gather information for performance tunning"
+title: "Gather information for performance tuning"
 subtitle: "Collecting info using explain-plan, ASH reprot and AWR report"
 date: 2020-02-17
-background: '/img/posts/06.jpg'
+background: '/img/posts/engine.jpg'
 categories: Oracle
 ---  
-# Gather info for performance tunning
+# Gather info for performance tuning
 ## If you know what is running slow:
 1. Collect select statment from the programmer
 2. Get explain plans (text file)
