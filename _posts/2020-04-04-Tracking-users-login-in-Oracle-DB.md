@@ -2,7 +2,7 @@
 layout: post
 title: "Tracking users login in Oracle DB"
 date:   2020-04-04
-background: "/img/posts/06.jpg"
+background: "/img/posts/tracking_footprints.jpg"
 categories: Oracle
 ---   
 # Tracking users logon
