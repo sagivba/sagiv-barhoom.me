@@ -4,6 +4,7 @@ title:  "Using the cut command"
 author: "Sagiv Barhoom"
 date:   2020-04-06
 categories: Linux 
+background: '/img/posts/tailor_scissors.jpg'
 ---
 # The ```cut``` command  - usage and examples
 The ```cut``` command can be used for extracting portion of text from a file by selecting columns.
