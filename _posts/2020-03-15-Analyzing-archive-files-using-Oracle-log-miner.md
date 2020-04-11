@@ -38,6 +38,9 @@ ORDER BY 1;
 ```
 
 Here we see that we have a lot of writing activity on 00:00-01:00  on both:  Apr  5'th and  Apr  6'th
+BTW: if you don't understand th command - take a look in the posts:
+- Using-the-cut-command
+- Perl-one-liners
 
 ## Analize the files using ```logmngr```
 ```bash
