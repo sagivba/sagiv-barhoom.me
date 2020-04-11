@@ -71,7 +71,7 @@ perl -pi -e 's/this/those/g if /these/' file
     ```
     Wait there is more :-)
     - For URL escape - use ```URL::escape::uri_escape("$string")``` and ```URL::escape::uri_unescape("$esc_string")```
-    - For HTML encode - use ```HTML::Entities::encode_entities("<string>")'``` and ```decode_entities("&lt;string&gt;")'```
+    - For HTML encode - use ```HTML::Entities::encode_entities("<string>")``` and ```decode_entities("&lt;string&gt;")```
 
 
 ## How does it work?
