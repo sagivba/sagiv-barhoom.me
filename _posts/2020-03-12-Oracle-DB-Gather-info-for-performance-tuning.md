@@ -6,7 +6,7 @@ date: 2020-02-17
 background: '/img/posts/engine.jpg'
 categories: Oracle
 ---  
-# Gather info for performance tuning
+# Gather info for performance tuning on Oracle DB
 ## If you know what is running slow:
 1. Collect select statment from the programmer
 2. Get explain plans (text file)
