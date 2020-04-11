@@ -1,3 +1,10 @@
+---   
+layout: post
+title: "Perl-one-liners"
+date:   2020-04-10
+background: "/img/posts/camel-perl.jpg"
+categories: Perl
+---  
 # Perl one-liners
 
 ## Useful options for Perl one-liners
