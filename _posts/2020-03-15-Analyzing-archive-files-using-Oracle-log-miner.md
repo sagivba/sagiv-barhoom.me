@@ -72,7 +72,7 @@ exec DBMS_LOGMNR.START_LOGMNR(options =>dbms_logmnr.dict_from_online_catalog);
 
 ## End oracle log miner session
 ```sql
-exec DBMS_LOGMNR.END_LOGMNR();```
+exec DBMS_LOGMNR.END_LOGMNR();
 ```
 
 ## Start analizing...
@@ -121,9 +121,10 @@ Lets tke a look at the actions of CUTOMERS_TBL:
 ```sql
 SELECT username,
        table_name, 
-	   to_char(timestamp,'mm/dd/yy hh24:mi:ss') timestamp,
-	   seg_type_name, seg_name, table_space, 
-	   session# SID, serial# ,operation--,substr(sql_redo,1,400) as sql_
+       to_char(timestamp,'mm/dd/yy hh24:mi:ss') timestamp,
+	seg_type_name, seg_name, table_space, 
+	session# SID, serial# ,operation
+	--,substr(sql_redo,1,400) as sql_
 FROM  v$logmnr_contents
 WHERE table_name = 'CUTOMERS_TBL';
 ```
