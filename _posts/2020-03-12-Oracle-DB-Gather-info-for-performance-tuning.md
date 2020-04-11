@@ -7,19 +7,21 @@ background: '/img/posts/engine.jpg'
 categories: Oracle
 ---  
 # Gather info for performance tuning on Oracle DB
-## If you know what is running slow:
+This is a brief description of how to collect the information to test the performance of programs written in PL\SQL
+
+## If you *know* what is running slow:
 1. Collect select statment from the programmer
-2. Get explain plans (text file)
-3. Get plan statistics (html file)
-4. Get ASH reprot (html file)
-5. Get AWR reprot (html file)
+2. Get explain plans (as text file)
+3. Get plan statistics (as html file)
+4. Get ASH report (as html file)
+5. Get AWR report (as html file)
 Analize it will be done in adifferent Post
 
 ## if you *do not* know what is running slow:
 1. Run the program with the programmer
-2. Get ASH reprot (html file)
+2. Get ASH report (as html file)
 3. Collect select statment from the programmer and the ASH report
-4. Generate explain plans (text file)
+4. Generate explain plans (as text file)
 
 
 ## Before you start..
@@ -194,6 +196,6 @@ from table(DBMS_WORKLOAD_REPOSITORY.AWR_REPORT_HTML(
         L_EID         => 46982));
 ```
 
-4. Copy the result into notepad. Save with HTML extention, and there you have your AWR report.
+4. Copy the result into a text editor. Save with HTML extention, and there you have your AWR report.
 
 
