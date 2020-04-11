@@ -45,7 +45,7 @@ SELECT SYS_CONTEXT ('USERENV', 'SID') FROM DUAL;
 Run the ash report using one of those: 
 	- for time frame
 ```sql
-select * from table(DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_HTML(
+SELECT * FROM TABLE(DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_HTML(
   L_DBID =>     <db_id>,         -- this is number
   L_INST_NUM => <inst_id>,       -- this is number usualy 1
   L_BTIME => sysdate - 60/1440, /* meaning start the report from 60 minutes ago */
@@ -55,14 +55,14 @@ select * from table(DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_HTML(
 ### For an exact date:
 You can Run ASH report for an exact date:
 ```sql
-select * from table(DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_HTML(
+SELECT * FROM TABLE(DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_HTML(
   L_DBID =>     <db_id>,     -- this is number
   L_INST_NUM => <inst_id>,   -- this is number usualy 1
   L_BTIME => TO_DATE('22/2/2013 06:20','dd/mm/yyyy hh24:mi'),
   L_ETIME => TO_DATE('22/2/2013 06:40','dd/mm/yyyy hh24:mi'),
   L_SQL_ID =>'4susktwfs9jg2'));
 
-select * from table(DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_HTML(
+SELECT * FROM  table(DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_HTML(
   L_DBID => 123456, 
   L_INST_NUM => 1,  
   L_BTIME => TO_DATE('23/2/2019 10:00','dd/mm/yyyy hh24:mi'),
@@ -71,7 +71,7 @@ select * from table(DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_HTML(
 ```
 ### Example for a client id
 ```sql
-select * from table(DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_HTML(
+SELECT * FROM TABLE(DBMS_WORKLOAD_REPOSITORY.ASH_REPORT_HTML(
   L_DBID =>     62116283,         
   L_INST_NUM => 1,       -- this is number usualy 1
   L_BTIME => TO_DATE('11/02/2019 15:06:20','dd/mm/yyyy hh24:mi:ss'),
@@ -109,7 +109,7 @@ Remark: *Based on stored object statistics and estimated costs*
 #### Option 1 - For the last statement executed
 Remark: *sometimes it does not work...*
 ```sql
-SELECT * FROM TABLE (DBMS_XPLAN.DISPLAY_CURSORFORMAT=>'ALLSTATS LAST'));
+SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSORFORMAT=>'ALLSTATS LAST'));
 ```
 
 #### Option 2 - For the last statement executed for a specific SQL ID
@@ -125,7 +125,7 @@ b. Get execution plan with actual run-time statistics
     *(Replace the "&sql_id" with the actual SQL ID of the statement)*
 ```sql
     SELECT * 
-    FROM TABLE (DBMS_XPLAN.DISPLAY_CURSOR(sql_id => '&sql_id',FORMAT=>'ALLSTATS LAST'));
+    FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR(sql_id => '&sql_id',FORMAT=>'ALLSTATS LAST'));
 ```
 
 ### C. Create explain plan with actual run-time statistics using MONITOR report
@@ -161,8 +161,7 @@ b. Get execution plan with actual run-time statistics
 
 Using: 
 ```sql
- select * 
- from table(DBMS_WORKLOAD_REPOSITORY.AWR_REPORT_HTML(
+ SELECT * FROM TABLE(DBMS_WORKLOAD_REPOSITORY.AWR_REPORT_HTML(
 		L_DBID     => <DBID>, 
 		L_INST_NUM => <INSTANCE_NUMBER>, 
 		L_BID      => <BEGIN_SNAP>, 
@@ -177,19 +176,18 @@ SELECT DBID FROM v$database;
 
 2. Check required snapshots:
 ```sql
-select 
+SELECT 
 	s.snap_id AS "snap_id",  
 	to_char(s.end_interval_time,'dd/mm/yyyy HH24:mi') AS "snapshot time",
 	to_char(s.startup_time,'dd Mon "at" HH24:mi:ss')  AS "Startup time"
-from dba_hist_snapshot s
-order by snap_id DESC;
+FROM dba_hist_snapshot s
+ORDER BY snap_id DESC;
 ```
 You should choose snap_id for begin () and end parameters
 
 3. Generate a report for 9:00 to 10:00 today:
 ```sql 
-select * 
-from table(DBMS_WORKLOAD_REPOSITORY.AWR_REPORT_HTML(
+SELECT * FROM TABLE(DBMS_WORKLOAD_REPOSITORY.AWR_REPORT_HTML(
         L_DBID        => 625123283, 
         L_INST_NUM    => 1, 
         L_BID         => 46980, 
