@@ -21,9 +21,9 @@ categories: Perl
 
 # Some snipset
 1. Replace "this" with "that" in a list of files
-```bash
-perl -pi -e 's/this/that/g' file1 file2 file3
-```
+   ```bash
+   perl -pi -e 's/this/that/g' file1 file2 file3
+   ```
 
 2. Replace "this" with "those" in a list of files, but only on lines that match also "these".
 ```bash
@@ -31,14 +31,47 @@ perl -pi -e 's/this/those/g if /these/' file
 ```
 
 3. Replace "this" with "those" in a list of files, but only on lines that match also "these".
-```bash
-perl -pi -e 's/this/those/g if /these/' file
-```
+   ```bash
+   perl -p -e 's/this/those/g if /these/' file
+   ```
 
-4.  Find all repeated lines in a file
-```bash
-perl -ne 'print if $a{$_}++' file
-```
+4. Find all repeated lines in a file
+   ```bash
+   perl -ne 'print if $a{$_}++' file
+   ```
+
+5. Like the command :```unix2dos``` (conversion from Unix to Windows format). 
+   The option ```-i.bak``` will create backup 
+   You can convert Unix file back to Windows format too:
+   ```bash
+   perl -i.bak -pe 's/\n/\r\n/' filename 
+   ```
+   
+6. Print range of lines in file (e.g lines 21-37)
+   ```bash
+   perl -ne 'print if 21 .. 37'
+   ```
+
+8. Print balance of quotes in each line (useful for finding missing quotes in Perl and other scripts)
+   ```bash
+   perl -ne '$q=($_=~tr/"//); print"$.\t$q\t$_";' filename
+   ```
+9. Print only the lines between "START" and "END"
+   ```bash
+   perl -i.old -ne 'print if /^START$/ .. /^END$/' foo.txt 
+   ```
+10. Compress consecutive empty row instances to a single instance
+    ```bash
+    perl -00 -pe '' file
+    ```
+11. Encod/Decode Base64
+    ```bash
+    perl -MMIME::Base64 -0777 -ne 'print encode_base64($_)' file
+    perl -MMIME::Base64 -le 'print decode_base64("string")'
+    ```
+    Wait there is more :-)
+    - For URL escape - use ```URL::escape::uri_escape("$string")``` and ```URL::escape::uri_unescape("$esc_string")```
+    - For HTML encode - use ```HTML::Entities::encode_entities("<string>")'``` and ```decode_entities("&lt;string&gt;")'```
 
 
 ## How does it work?
