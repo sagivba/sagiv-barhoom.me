@@ -9,7 +9,7 @@ background: '/img/posts/be-linux.jpg.jpg'
 # ```Slurm``` - Cluster management and job scheduling system
 Slurm is an open-source, fault-tolerant, and highly scalable cluster management and job scheduling system for large and small Linux clusters. 
 here are some snippets  which I use.
-[slurm tutorial](https://slurm.schedmd.com/tutorials.html)
+FYI -  think this as a *good* [slurm tutorial](https://slurm.schedmd.com/tutorials.html)
 
 ## sinfo
 View information about Slurm nodes and partitions.
