@@ -48,7 +48,7 @@ squeue -p  worknodes  # squeue * in partittion ''worknodes'*
 ```
 ### Tip for you:
 * Use ``` watch  squeue -u $USER ``` to monitor your queue
-* Create "profiles" for ```sbatch```, for example, this is an example for nice template fo pdb_prep which use 30 CPU's partially.
+* Create "profiles" for ```sbatch```, for example, this is an example for nice template for [pdb_prep](https://sagivba.github.io/pdb_prep/) which use 30 CPU's partially.
   For examples:
   ```
   # SBATCH --job-name=pdb_prep
