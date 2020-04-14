@@ -9,7 +9,7 @@ categories: ORACLE
 # Pivot-tables-using-sql
 
 ## Simple example
-This is the basic syntax of the Oracle PIVOT clause:
+This is the basic syntax of the Oracle ```PIVOT``` clause:
 ```sql
 SELECT
     select_list
@@ -20,7 +20,6 @@ PIVOT [XML] (
         pivot_in_clause
 );
 ```
-
 
 Example:
 ```sql
@@ -35,7 +34,7 @@ PIVOT(
         'Health'
       )
 )
-ORDER BY status;
+ORDER BY course_name;
 ```
 
 ## Lets add aggregaated colomns
@@ -47,7 +46,7 @@ PIVOT(
    COUNT(student_id),
    AVG(grade)
    FOR academic_desipline
-   IN ( 'Law and Social' Law_and_Social,  -- this is an alias
+   IN ( 'Law and Social' Law_and_Social, 
         'Engineering',
         'Education',
         'Health'
@@ -57,8 +56,7 @@ ORDER BY status;
 ```
 
 ## The ```pivot_in_clause```
-We can write  this clus as lis as seen above.
-But  also as a subquery using the **```XML```** option - and then parse it:
+We can write this clause as list as seen above, but  also as a subquery using the **```XML```** option - and then parse the result:
 ```sql
 SELECT *
 FROM graduates_students_view
@@ -71,7 +69,6 @@ PIVOT XML (
         FROM academic_desiplines_view
       )
 )
-ORDER BY status;
 ```
 
 
