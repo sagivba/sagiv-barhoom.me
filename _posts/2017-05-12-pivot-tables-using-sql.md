@@ -4,6 +4,7 @@ title:  "Pivot Tables Using SQL"
 author: "Sagiv Barhoom"
 date:   2017-05-12
 categories: ORACLE 
+background: '/img/posts/pivot.jpg'
 ---
 
 # Pivot-tables-using-sql
