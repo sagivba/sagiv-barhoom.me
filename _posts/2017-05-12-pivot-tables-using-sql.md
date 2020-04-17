@@ -7,7 +7,7 @@ categories: ORACLE
 background: '/img/posts/pivot.jpg'
 ---
 
-# Pivot-tables-using-sql
+# Pivot tables using sql
 
 ## Simple example
 This is the basic syntax of the Oracle ```PIVOT``` clause:
