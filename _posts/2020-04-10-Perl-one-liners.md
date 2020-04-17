@@ -1,6 +1,6 @@
 ---   
 layout: post
-title: "Perl-one-liners"
+title: "Perl one-liners"
 date:   2020-04-10
 background: "/img/posts/camel-perl.jpg"
 categories: Perl
