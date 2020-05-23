@@ -17,6 +17,9 @@ ORDER BY 1;
 
 
 ## Find the rate of arc files generation per day/minute
+
+I use two mwthods:
+### Using the command line:
 ```bash
 [oracle@webDB arc_dir]$ cd /your/arc/files/dir/
 [oracle@webDB arc_dir]$ # per day
@@ -33,8 +36,6 @@ ORDER BY 1;
      24  Apr  5 16:
     137  Apr  5 00:
     139  Apr  6 00:
-
-
 ```
 
 Here we see that we have a lot of writing activity on 00:00-01:00  on both:  Apr  5'th and  Apr  6'th
@@ -42,7 +43,27 @@ BTW: if you don't understand th command - take a look in the posts:
 - Using-the-cut-command
 - Perl-one-liners
 
-## Analize the files using ```logmngr```
+### using SQL:
+```sql
+  SELECT TO_CHAR (completion_time, 'mm-dd-HH24-Day') time_,
+         TO_CHAR (completion_time, 'D-Day') day_,
+         TO_CHAR (completion_time, 'HH24') hour_,
+         COUNT (DISTINCT sequence#) archives,
+         ROUND (  COUNT (DISTINCT sequence#)
+                * (SELECT bytes / 1024 / 1024 / 1024 member_gb
+                     FROM v$log
+                    WHERE ROWNUM = 1))
+             archive_gb
+    FROM v$archived_log
+   WHERE completion_time > SYSDATE - 21
+GROUP BY TO_CHAR (completion_time, 'mm-dd-HH24-Day'),
+         TO_CHAR (completion_time, 'D-Day'),
+         TO_CHAR (completion_time, 'HH24')
+ ORDER BY 1;
+```
+
+
+## Analize the files using ```DBMS_LOGMNR```
 ```bash
 [oracle@webDB arc_dir]$ ls -ltr $PWD/arch_*.* |grep -P 'Apr  [56] 00:' |  cut -c 54-200 | perl -i -pe "s/^/$postfix/;"| perl -i -pe "s/$/$suffix/"
 exec DBMS_LOGMNR.ADD_LOGFILE('/oracle_dir/arc_dir/arch_1_859056_620585656.arc');
