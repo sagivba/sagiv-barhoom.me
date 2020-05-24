@@ -66,6 +66,7 @@ GROUP BY TO_CHAR (completion_time, 'mm-dd-HH24-Day'),
 ## Analize the files using ```DBMS_LOGMNR```
 ```bash
 [oracle@webDB arc_dir]$ ls -ltr $PWD/arch_*.* |grep -P 'Apr  [56] 00:' |  cut -c 54-200 | perl -i -pe "s/^/$postfix/;"| perl -i -pe "s/$/$suffix/"
+[oracle@webDB arc_dir]$ for i in `ls $PWD/*arc`; do  echo "exec DBMS_LOGMNR.ADD_LOGFILE('$i');"; done
 exec DBMS_LOGMNR.ADD_LOGFILE('/oracle_dir/arc_dir/arch_1_859056_620585656.arc');
 exec DBMS_LOGMNR.ADD_LOGFILE('/oracle_dir/arc_dir/arch_1_859057_620585656.arc');
 exec DBMS_LOGMNR.ADD_LOGFILE('/oracle_dir/arc_dir/arch_1_859058_620585656.arc');
