@@ -7,7 +7,7 @@ categories: Python
 background: '/img/posts/python.jpg'
 ---
 
-# python-dictionary-tips-and-tricks
+# python dictionary tips and tricks
 Here ar some ```dict``` methods, tips and trick which I find useful
 
 ## The ```dict.clear``` method vs ```dict.new```
