@@ -1,6 +1,6 @@
 ---   
 layout: post
-title: "Mangeing users and profiles -  Oracle DB"
+title: "Managing users and profiles on Oracle DB"
 subtitle: "Simple usage an examples - of user and profiles management"
 date: 2020-03-16
 background: '/img/posts/06.jpg'
