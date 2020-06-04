@@ -32,6 +32,13 @@ SELECT job, log_user, priv_user,schema_user,
 FROM dba_jobs j 
 WHERE j.broken='Y'
 ```
+## run job 1864
+```sql
+DBMS_JOB.RUN(job=>1864,force=>FALSE);
+```
+* The force parameter default is FALSE
+* If force is FALSE, the job can run in the foreground only in the specified instance. 
+  Oracle displays error ```ORA-23428``` if force is FALSE and the connected instance is the incorrect instance.
 
 ## Fix broken job 1864
 Run the package bellow as  *USER*:
