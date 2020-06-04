@@ -6,7 +6,7 @@ date:   2020-01-02
 categories: ORACLE 
 ---
 
-# DBMS_JOBS snippets
+# ```DBMS_JOBS``` snippets
 Here some basic snippets to mange ```user_jobs```/```dba_jobs```...
 ## Create job
 ```sql
@@ -32,7 +32,7 @@ SELECT job, log_user, priv_user,schema_user,
 FROM dba_jobs j 
 WHERE j.broken='Y'
 ```
-## run job 1864
+## Run job 1864
 ```sql
 DBMS_JOB.RUN(job=>1864,force=>FALSE);
 ```
