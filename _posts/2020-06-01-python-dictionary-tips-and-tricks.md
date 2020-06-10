@@ -22,7 +22,7 @@ d.clear()          #  so now both d and d2  are cleared
 print (d2)         # --> outputs: {}
 ```
 
-Aassigning ```d = {}`` creates a new, empty dictionary.
+Aassigning ```d = {}``` creates a new, empty dictionary.
 This leaves d2 pointing at the old dictionary. so it contains the items of the original dictionary.
 However, using ```d.clear()``` clears the same dictionary that d and d2 both point at.
 
