@@ -20,10 +20,12 @@ d = {"a": "1"}
 d2 = d             # --> d2 is a referance to d
 d.clear()          #  so now both d and d2  are cleared
 print (d2)         # --> outputs: {}
+```
+
 Aassigning ```d = {}`` creates a new, empty dictionary.
 This leaves d2 pointing at the old dictionary. so it contains the items of the original dictionary.
 However, using ```d.clear()``` clears the same dictionary that d and d2 both point at.
-```
+
 
 ## Convert two lists into a dictionary - using ```zip```
 ```python
