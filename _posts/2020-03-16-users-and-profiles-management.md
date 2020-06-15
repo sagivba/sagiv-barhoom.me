@@ -56,7 +56,7 @@ ORDER BY 2, 1
 CREATE PROFILE umlimited_attempts LIMIT
   FAILED_LOGIN_ATTEMPTS UNLIMITED;
 
-ALTER USER LAMDANRUN PROFILE  umlimited_attempts;
+ALTER USER WEBUSER PROFILE  umlimited_attempts;
 
 SELECT username, profile, account_status
   FROM dba_users
