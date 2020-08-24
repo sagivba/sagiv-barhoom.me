@@ -10,6 +10,7 @@ background: '/img/posts/python.jpg'
 
 My goal here was to map from the listener.log file the hostnames, programs and OS users that connect to the DB.
 where is the listener.log located?
+
 ## Setting the data
 ``` bash 
 locate listener.log
@@ -24,7 +25,8 @@ $ echo $SIDmyDB
 $ grep CONNECT | grep -i "=$SID" | grep -P '\w\w\w-2020'> listener-clean.log
 ```
 
-##  Aggregation into json
+## Aggregation into json
+
 Now lets aggregate the data from ```listener-clean.log``` into JSON files.
 
 ```python
@@ -101,25 +103,24 @@ if __name__ == "__main__":
 ```
 
 At this stage we have  two files: 
-1. Thr file ```HOSTS-2020.json``` which contains records that look like :
-
+1. The file ```HOSTS-2020.json``` which contains records that look like :
 ```json
 "('srv1.domain.com', '147.222.20.33')": {
     "myprogram.import.exe": 72,
     "ourprogram.import.exe": 1463
 },
 ```
-2. The file ```PROGRAMS-2020.json``` which contains records that look like :
 
+2. The file ```PROGRAMS-2020.json``` which contains records that look like :
 ```json
 "ourprogram.import.exe": {
     "('srv1.domain.com', '147.222.20.33')": {
         "some_username": 1463
     }
- },
- ```
+},
+```
    
- ## Replacing IP addresses with hostnames
+## Replacing IP addresses with hostnames
  ```python
 import re
 import socket
@@ -166,13 +167,13 @@ if __name__ == "__main__":
 
 The above code will create two files in which IP addresses will be replaced by hostname when possible: 
 1. The file ```HOSTS-2020-hosts.json``` which contains records that look like:
-
 ```json
 "('srv1.domain.com', 'srv1.domain.com')": {
     "myprogram.import.exe": 72,
     "ourprogram.import.exe": 1463
 },
 ```
+
 2. The file ```PROGRAMS-2020-hosts.json``` which contains records that look like:
 ```json
 "ourprogram.import.exe": {
