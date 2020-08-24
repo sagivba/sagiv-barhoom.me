@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "Dictionary tips and tricks"
+title:  "parsing  Oracle listener.log"
 author: "Sagiv Barhoom"
 date:   2020-08-24
 categories: Python
 background: '/img/posts/python.jpg'
 ---
+# Parsing  Oracle ```listener.log``` file 
 
 My goal here was to map from the listener.log file the hostnames, programs and OS users that connect to the DB.
 where is the listener.log located?
