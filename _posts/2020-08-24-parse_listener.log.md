@@ -121,7 +121,7 @@ At this stage we have  two files:
 ```
    
 ## Replacing IP addresses with hostnames
- ```python
+```python
 import re
 import socket
 
