@@ -8,7 +8,7 @@ background: '/img/posts/python.jpg'
 ---
 # Parsing  Oracle ```listener.log``` file 
 
-My goal here was to map from the listener.log file the hostnames, programs and OS users that connect to the DB.
+My goal in ths article was to map from the listener.log file the hostnames, programs and OS users that connect to the DB.
 where is the listener.log located?
 
 ## Setting the data
@@ -103,7 +103,8 @@ if __name__ == "__main__":
 ```
 
 At this stage we have  two files: 
-1. The file ```HOSTS-2020.json``` which contains records that look like :
+1. The file ```HOSTS-2020.json``` which contains aggregation by hostname and then by program name
+here the records that look like :
 ```json
 "('srv1.domain.com', '147.222.20.33')": {
     "myprogram.import.exe": 72,
@@ -111,7 +112,8 @@ At this stage we have  two files:
 },
 ```
 
-2. The file ```PROGRAMS-2020.json``` which contains records that look like :
+2. The file ```PROGRAMS-2020.json``` which contains aggregatoin  by program name then by host name and the by OS username
+here the records that look like :
 ```json
 "ourprogram.import.exe": {
     "('srv1.domain.com', '147.222.20.33')": {
@@ -121,6 +123,8 @@ At this stage we have  two files:
 ```
    
 ## Replacing IP addresses with hostnames
+As you know - there are mostly I adresses in the ```listener.log``` file - here I am trying to convert them to hostnames:
+
 ```python
 import re
 import socket
