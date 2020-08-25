@@ -7,7 +7,7 @@ categories: Linux
 background: '/img/posts/tailor_scissors.jpg'
 ---
 
-# Some useful snippets fort the ```find``` command
+# Some useful snippets for the ```find``` command
 
 ## Search files by time limitations
 ``` bash
