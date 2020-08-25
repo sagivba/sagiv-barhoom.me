@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "parsing  Oracle listener.log"
+title:  "Parsing  Oracle listener.log"
 author: "Sagiv Barhoom"
 date:   2020-08-24
 categories: Python
