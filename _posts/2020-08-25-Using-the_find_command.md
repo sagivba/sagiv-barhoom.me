@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The find command"
+title:  "Using the find command"
 author: "Sagiv Barhoom"
 date:   2020-08-25
 categories: Linux 
