@@ -46,6 +46,7 @@ BTW: if you don't understand th command - take a look in the posts:
 ### using SQL:
 ```sql
   SELECT TO_CHAR (completion_time, 'mm-dd-HH24-Day') time_,
+         TO_CHAR (completion_time, 'mm-dd') date_,
          TO_CHAR (completion_time, 'D-Day') day_,
          TO_CHAR (completion_time, 'HH24') hour_,
          COUNT (DISTINCT sequence#) archives,
@@ -57,6 +58,7 @@ BTW: if you don't understand th command - take a look in the posts:
     FROM v$archived_log
    WHERE completion_time > SYSDATE - 21
 GROUP BY TO_CHAR (completion_time, 'mm-dd-HH24-Day'),
+         TO_CHAR (completion_time, 'mm-dd'),
          TO_CHAR (completion_time, 'D-Day'),
          TO_CHAR (completion_time, 'HH24')
  ORDER BY 1;
