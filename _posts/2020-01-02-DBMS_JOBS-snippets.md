@@ -58,11 +58,11 @@ END;
 
 ## List running jobs
 ```sql
-SELECT rj.job ",
+SELECT rj.job ,
        rj.sid,
        rj.failures,       
-       Substr(To_Char(jr.last_date,'DD-Mon-YYYY HH24:MI:SS'),1,20) Last_Date,      
-       Substr(To_Char(jr.this_date,'DD-Mon-YYYY HH24:MI:SS'),1,20) This_Date,
+       Substr(To_Char(rj.last_date,'DD-Mon-YYYY HH24:MI:SS'),1,20) Last_Date,      
+       Substr(To_Char(rj.this_date,'DD-Mon-YYYY HH24:MI:SS'),1,20) This_Date,
        j.what
-FROM   dba_jobs_running rj , inner join dba_jobs j on rj.job=j.job
+FROM   dba_jobs_running rj  inner join dba_jobs j on rj.job=j.job
 ```
