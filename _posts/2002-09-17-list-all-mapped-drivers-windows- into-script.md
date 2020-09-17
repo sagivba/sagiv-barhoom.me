@@ -4,7 +4,7 @@ title:  "List and edit all mapped drivers(windows) - into a script"
 author: "Sagiv Barhoom"
 date:   2020-09-17
 categories: Windows 
-background: '/img/posts/windows-driver.jpg'
+background: '/img/posts/window-driver.jpg'
 ---
 
 # list and edit all mapped drivers by CLI
