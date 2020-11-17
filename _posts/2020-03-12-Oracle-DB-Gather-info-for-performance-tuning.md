@@ -196,4 +196,7 @@ SELECT * FROM TABLE(DBMS_WORKLOAD_REPOSITORY.AWR_REPORT_HTML(
 
 4. Copy the result into a text editor. Save with HTML extention, and there you have your AWR report.
 
-
+### creating AWR snap manualy
+```sql 
+exec sys.dbms_workload_repository.create_snapshot;
+```
