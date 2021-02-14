@@ -5,6 +5,7 @@ author: "Sagiv Barhoom"
 date:   2021-02-10
 categories: Linux 
 background: '/img/posts/be-linux.jpg.jpg'
+---
 
 # System Activity Report (SAR) 
 Using the SAR tool, we can look back over a period of time and see how the server has been running.
