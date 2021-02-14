@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Querying ```V$ACTIVE_SESSION_HISTORY```"
+title:  "Querying V$ACTIVE_SESSION_HISTORY"
 author: "Sagiv Barhoom"
 date:   2021-02-16
 categories: ORACLE 
