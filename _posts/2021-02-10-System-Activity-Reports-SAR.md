@@ -2,7 +2,7 @@
 layout: post
 title:  "System Activity Report - SAR "
 author: "Sagiv Barhoom"
-date:   2020-02-10
+date:   2021-02-10
 categories: Linux 
 background: '/img/posts/be-linux.jpg.jpg'
 
