@@ -64,7 +64,12 @@ SELECT 'ALTER PUBLIC SYNONYM ' || object_name || ' COMPILE;'     code
   FROM DBA_OBJECTS
  WHERE     status = 'INVALID'
        AND object_type LIKE 'SYNONYM%'
-       AND owner = 'PUBLIC';
+       AND owner = 'PUBLIC'
+UNION
+SELECT 'ALTER MATERIALIZED VIEW ' ||owner||'.'|| object_name || ' COMPILE;'     code
+  FROM DBA_OBJECTS
+ WHERE     status = 'INVALID'
+       AND object_type LIKE 'MATERIALIZED VIEW%';       
 --
 spool off;
 SET echo ON;
