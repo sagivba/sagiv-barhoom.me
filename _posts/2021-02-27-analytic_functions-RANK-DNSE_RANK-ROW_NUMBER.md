@@ -1,31 +1,39 @@
- # Analytic Functions - `RANK()` vs `DENSE_RANK() vs `ROW_NUMBER()`
- This is a quick reminder - when to use each funcion.
+---
+layout: post
+title:  "Analytic Functions - RANK() vs DENSE_RANK() vs ROW_NUMBER()"
+author: "Sagiv Barhoom"
+date:   2021-02-27
+categories: ORACLE 
+background: '/img/posts/pivot.jpg'
+---
+# Analytic Functions - `RANK()` vs `DENSE_RANK() vs `ROW_NUMBER()`
+This is a quick reminder - when to use each funcion.
 
- ```
- [RANK()| DENSE_RANK()| ROW_NUMBER(])  OVER ([ query_partition_clause ] order_by_clause)
- order by:
- ORDER BY expression1 [,expression2,...] [ASC | DESC ] [NULLS FIRST | LAST]
- ```
+```
+[RANK()| DENSE_RANK()| ROW_NUMBER(])  OVER ([ query_partition_clause ] order_by_clause)
+order by:
+ORDER BY expression1 [,expression2,...] [ASC | DESC ] [NULLS FIRST | LAST]
+```
 
- ### the `RANK()` function
+### the `RANK()` function
 
- The `RANK()` function calculates the rank of a value in a set of values.
- It will skip rank in case of ties.
- `[A A A B C D]  => [1 1 1 4 5 6]`
+The `RANK()` function calculates the rank of a value in a set of values.
+It will skip rank in case of ties.
+`[A A A B C D]  => [1 1 1 4 5 6]`
 
 
- ### the `DENSE_RANK()` function
- Unlike the RANK() function, the DENSE_RANK() function returns rank values as consecutive integers.
- It does not skip rank in case of ties.
- Rows with the same values for the rank criteria will receive the same rank values.
- `[A A A B C D]  => [1 1 1 2 3 4]`
+### the `DENSE_RANK()` function
+Unlike the RANK() function, the DENSE_RANK() function returns rank values as consecutive integers.
+It does not skip rank in case of ties.
+Rows with the same values for the rank criteria will receive the same rank values.
+`[A A A B C D]  => [1 1 1 2 3 4]`
 
- DENSE_RANK( ) OVER([ query_partition_clause ] order_by_clause)
+DENSE_RANK( ) OVER([ query_partition_clause ] order_by_clause)
 
- ### the `ROW_NUMBER()` function
- Assign a unique sequential integer starting from 1 to each row in a partition or in the whole result.
- `[A A A B C D]  => [1 2 3 4 5 6]`
- 
+### the `ROW_NUMBER()` function
+Assign a unique sequential integer starting from 1 to each row in a partition or in the whole result.
+`[A A A B C D]  => [1 2 3 4 5 6]`
+
 ## An example
 ### the data
 ```sql
