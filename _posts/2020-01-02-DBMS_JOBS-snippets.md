@@ -66,3 +66,30 @@ SELECT rj.job ,
        j.what
 FROM   dba_jobs_running rj  inner join dba_jobs j on rj.job=j.job
 ```
+
+
+
+## export user jobs of one user
+```sql
+/* Formatted on 04/03/2021 19:11:25 (QP5 v5.326) */
+DECLARE
+    job_body    VARCHAR2 (32767):='--';
+    job_id number;
+    
+BEGIN
+    FOR record IN (SELECT JOB from dba_jobs where priv_user=USER  and job not in( 1360) order by JOB  )
+    LOOP
+        DBMS_JOB.user_export (record.job, job_body);
+        DBMS_OUTPUT.put_line ('exec '|| job_body || '--' || record.job);
+    END LOOP;
+EXCEPTION
+    WHEN OTHERS
+    THEN
+        RAISE;
+END;
+```
+### output
+```
+dbms_job.isubmit(job=>43,what=>'PKG_1.B(''Y'');',next_date=>to_date('2021-03-04:04:20:06','YYYY-MM-DD:HH24:MI:SS'),interval=>'SYSDATE + 1/(24*12)',no_parse=>TRUE);--43
+dbms_job.isubmit(job=>143,what=>'PKG_2.C;',next_date=>to_date('2021-03-04:04:22:06','YYYY-MM-DD:HH24:MI:SS'),interval=>'SYSDATE + 5/1440',no_parse=>TRUE);--14
+```
