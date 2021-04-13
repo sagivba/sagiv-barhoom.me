@@ -15,10 +15,14 @@ find /search/dir -cmin -60                              # change time - older th
 find /search/dir -cmin +60                              # change time - younger than 60 minutes
 find /search/dir -amin -60                              # access time
 find /search/dir -newer file_from-2020.08.20-08:00.tmp  # newer then  file_from-2020.08.20-08:00.tmp
+find -newermt "2020-02-06 17:30:00" ! -newermt "2017-02-06 22:00:00" -ls 
 ```
 from [stackoverflow](https://stackoverflow.com/questions/543946/find-mtime-files-older-than-1-hour):
+
 * ```-mtime N``` means files whose age A in days satisfies N ≤ A < N+1. In other words, -mtime N selects files that were last modified between N and N+1 days ago.
+
 * ```-mtime -N``` means files whose age A satisfies A < N, i.e. files modified less than N days ago. 
+
 * ```-mtime +N``` means files whose age A satisfies N+1 ≤ A, i.e. files modified at least N+1 days ago.
 
 For example, -mtime 1 selects files that were modified between 1 and 2 days ago. -mtime +1 selects files that were modified at least 2 days ago. To get files modified at least 1 day ago, use -mtime +0.
