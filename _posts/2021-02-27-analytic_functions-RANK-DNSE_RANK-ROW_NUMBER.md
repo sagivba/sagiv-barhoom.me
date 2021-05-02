@@ -6,7 +6,7 @@ date:   2021-02-27
 categories: ORACLE 
 background: '/img/posts/pivot.jpg'
 ---
-# Analytic Functions - `RANK()` vs `DENSE_RANK() vs `ROW_NUMBER()`
+# Analytic Functions - `RANK()` vs `DENSE_RANK()` vs `ROW_NUMBER()`
 This is a quick reminder - when to use each funcion.
 
 ```
