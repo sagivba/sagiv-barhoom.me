@@ -2,7 +2,7 @@
 layout: post
 title:  "Create CSV from sqlplus"
 author: "Sagiv Barhoom"
-date:   2017-05-12
+date:   2021-05-11
 categories: ORACLE 
 background: '/img/posts/pivot.jpg'
 ---
