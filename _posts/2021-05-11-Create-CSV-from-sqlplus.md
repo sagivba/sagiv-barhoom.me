@@ -8,6 +8,9 @@ background: '/img/posts/pivot.jpg'
 ---
 
 # Create csv from sqlplus
+
+This way you can quickly extract data into a CSV file directly from SQLPLUS.
+
 ```sql
 set colsep ,     -- separate columns with a comma
 set pagesize 0   -- No header rows
