@@ -48,28 +48,39 @@ SET termout OFF;
 set pagesize 0;
 spool _tmp_compile_invalids.sql;
 --
-SELECT 'ALTER PACKAGE ' || OWNER || '.' || object_name || ' COMPILE PACKAGE;'
+SELECT 'ALTER PACKAGE ' || owner || '.' || object_name || ' COMPILE PACKAGE;'
            code
-  FROM DBA_OBJECTS
+  FROM dba_objects
  WHERE status = 'INVALID' AND object_type LIKE 'PACKAGE%'
 UNION
-SELECT 'ALTER SYNONYM ' || OWNER || '.' || object_name || ' COMPILE;'
-           code
-  FROM DBA_OBJECTS
+SELECT 'ALTER PROCEDURE ' || owner || '.' || object_name || ' COMPILE;' code
+  FROM dba_objects
+ WHERE status = 'INVALID' AND object_type LIKE 'PROCEDURE'
+UNION
+SELECT 'ALTER FUNCTION' || owner || '.' || object_name || ' COMPILE;' code
+  FROM dba_objects
+ WHERE status = 'INVALID' AND object_type LIKE 'FUNCTION'
+UNION
+SELECT 'ALTER SYNONYM ' || owner || '.' || object_name || ' COMPILE;' code
+  FROM dba_objects
  WHERE     status = 'INVALID'
        AND object_type LIKE 'SYNONYM%'
        AND owner <> 'PUBLIC'
 UNION
-SELECT 'ALTER PUBLIC SYNONYM ' || object_name || ' COMPILE;'     code
-  FROM DBA_OBJECTS
+SELECT 'ALTER PUBLIC SYNONYM ' || object_name || ' COMPILE;' code
+  FROM dba_objects
  WHERE     status = 'INVALID'
        AND object_type LIKE 'SYNONYM%'
        AND owner = 'PUBLIC'
 UNION
-SELECT 'ALTER MATERIALIZED VIEW ' ||owner||'.'|| object_name || ' COMPILE;'     code
-  FROM DBA_OBJECTS
- WHERE     status = 'INVALID'
-       AND object_type LIKE 'MATERIALIZED VIEW%';       
+SELECT    'ALTER MATERIALIZED VIEW '
+       || owner
+       || '.'
+       || object_name
+       || ' COMPILE;'
+           code
+  FROM dba_objects
+ WHERE status = 'INVALID' AND object_type LIKE 'MATERIALIZED VIEW%';    
 --
 spool off;
 SET echo ON;
