@@ -15,7 +15,7 @@ linkedin_username:  sagivba
 # Add your google-analytics ID here to activate google analytics
 google_analytics:   UA-162783460-1 # out your google-analytics code
 
-gems: [jekyll-mermaid]
+
 
 # Build settings
 markdown:           kramdown
@@ -25,5 +25,4 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
-mermaid:
-  src: 'path/to/mermaid.js'
+  - jekyll-spaceship
