@@ -73,6 +73,10 @@ SELECT 'ALTER PUBLIC SYNONYM ' || object_name || ' COMPILE;' code
        AND object_type LIKE 'SYNONYM%'
        AND owner = 'PUBLIC'
 UNION
+SELECT    'ALTER  VIEW ' || owner || '.'|| object_name || ' COMPILE;'   code
+  FROM infra.dba_objects_new_invalid
+ WHERE status = 'INVALID' AND object_type LIKE 'VIEW%'
+ UNION
 SELECT    'ALTER MATERIALIZED VIEW '
        || owner
        || '.'
