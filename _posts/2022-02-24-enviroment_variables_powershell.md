@@ -1,4 +1,4 @@
-# Environmental variables in powershell in a nutshell
+Environmental variables in powershell in a nutshell
 
 ## GET
 ### Get all environment variables stored in the operating system:
