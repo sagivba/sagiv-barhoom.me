@@ -1,13 +1,16 @@
 ---
 layout: post
-title:  "Environmental variables in powershell in a nutshell"
+title:  "Environment variables in powershell in a nutshell"
 author: "Sagiv Barhoom"
 date:   2022-02-24
 categories: PowerShell 
 background: '/img/posts/pivot.jpg'
 ---
 
-# Environmental variables in powershell in a nutshell
+# Environment variables in powershell in a nutshell
+
+Getting and setting environment variables using powershell (on windows)
+ע
 
 ## GET
 ### Get all environment variables stored in the operating system:
