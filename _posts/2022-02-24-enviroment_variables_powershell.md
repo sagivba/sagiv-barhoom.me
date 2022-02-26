@@ -33,14 +33,6 @@ for example  get the `homepath` value
 ```powershell
  $env:path -split ';'
 ```
----
-layout: post
-title:  "Enviroment Variables PowerShell"
-author: "Sagiv Barhoom"
-date:   202-02-24
-categories: PowerShell 
-background: '/img/posts/pivot.jpg'
----
 
 ## Set
 ### Setting  and appending new variable
