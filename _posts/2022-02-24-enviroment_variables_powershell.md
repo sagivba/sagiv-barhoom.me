@@ -4,7 +4,7 @@ title:  "Environment variables using powershell in a nutshell"
 author: "Sagiv Barhoom"
 date:   2022-02-24
 categories: PowerShell 
-background: '/img/posts/pivot.jpg'
+background: '/img/posts/bg-shells.jpg'
 ---
 
 # Environment variables using powershell in a nutshell
