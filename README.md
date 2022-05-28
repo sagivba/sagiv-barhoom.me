@@ -1,2 +1,2 @@
-https://sagiv-barhoom.me - 
+http://sagiv-barhoom.me - 
 or http://sagivba.github.io/sagiv-barhoom.me on gh-pages
