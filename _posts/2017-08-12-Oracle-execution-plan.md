@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Pivot Tables Using SQL"
+title:  "Oracle execution plan"
 author: "Sagiv Barhoom"
 date:   2017-08-12
 categories: ORACLE 
