@@ -5,6 +5,9 @@ author: "Sagiv Barhoom"
 date:   2022-08-05
 categories: ORACLE 
 ---
+Here are some configurations and settings tips for Oracle SQLPLUS.
+
+
 
 ## Storing enviroment setiings
 * `STORE SET file_name` - To store the current setting of all system variables, enter
