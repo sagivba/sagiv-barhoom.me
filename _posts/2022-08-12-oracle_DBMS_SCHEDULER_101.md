@@ -1,6 +1,6 @@
 ---   
 layout: post
-title: "Oracle DBMS_SCHEDULER"
+title: "Oracle DBMS_SCHEDULER 101"
 subtitle: "Collecting info using explain-plan, ASH reprot and AWR report"
 date: 2022-08-12
 background: '/img/posts/engine.jpg'
