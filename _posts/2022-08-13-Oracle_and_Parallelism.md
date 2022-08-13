@@ -14,7 +14,9 @@ Here are some notes on oracle parallelism in the Oracle DB
 *DOP* - Degree Of Parallelism
 
 Three ways to set DOP:
-1. in a session - `ALTER SESSION SET parallel_degree_policy = auto;`
+1. in a session - 
+  `ALTER SESSION SET parallel_degree_policy = auto;`
+  `ALTER SESSION ENABLE PARALLEL QUERY;`
    then use hint `/*+ parallel(<DOP number fo process>) */`
 2. setting a table or index  for parallelism
 3. alter system - parameter PARALLEL_DEGREE_POLICY is set to AUTO
@@ -30,6 +32,11 @@ statement queuing, and in-memory parallel execution will be enabled.
 
 ```sql
 ALTER SESSION SET parallel_degree_policy = auto;
+ALTER SESSION ENABLE PARALLEL QUERY;
+/*
+ALTER SESSION ENABLE PARALLEL DML;
+ALTER SESSION ENABLE PARALLEL DDL;
+*/
 ```
 
 ### Setting Automatic Degree of Parallelism Using Hints
@@ -68,6 +75,15 @@ It then scans the other table in the join.
 SELECT /*+ parallel(auto) */ ename, dname  FROM emp e, dept d
 WHERE e.deptno=d.deptno;
 ```
+### Other hints that might help:
+1. STATEMENT_QUEUING/NO_STATEMENT_QUEUING
+   When PARALLEL_DEGREE_POLICY is set to AUTO, STATEMENT_QUEUING hint enables a statement to bypass the parallel statement queue. 
+2. PQ_CONCURRENT_UNION/NO_PQ_CONCURRENT_UNION 
+   force the Oracle optimizer to execute each query block in parallel, executing each piece of the query simultaneously.
+3. PARALLEL_INDEX/NO_PARALLEL_INDEX
+4. DISABLE_PARALLEL_DML
+
+
 ## Specifying the Degree of Parallelism on table 
 ```sql
 ALTER TABLE customers PARALLEL 4;
