@@ -1,7 +1,7 @@
 ---   
 layout: post
 title: "What is eating my PGA"
-subtitle: "Collecting info using explain-plan, ASH reprot and AWR report"
+subtitle: "ORA-04036: PGA memory used by the instance exceeds PGA_AGGREGATE_LIMIT"
 date: 2022-08-25
 background: '/img/posts/memory-leak.jpg'
 categories: Oracle
