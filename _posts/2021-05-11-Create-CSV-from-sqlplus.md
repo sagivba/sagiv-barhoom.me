@@ -12,13 +12,15 @@ background: '/img/posts/pivot.jpg'
 This way you can quickly extract data into a CSV file directly from SQLPLUS.
 
 ```sql
-set colsep ,     -- separate columns with a comma
-set pagesize 0   -- No header rows
-set trimspool on -- remove trailing blanks
-set linesize 200 -- 200 is the sum of the columns widths
-set numwidth 12  -- 12 is the length for numbers 
-set headsep off
-
+-- before 12.2
+--set colsep ,     -- separate columns with a comma
+--set pagesize 0   -- No header rows
+--set trimspool on -- remove trailing blanks
+--set linesize 200 -- 200 is the sum of the columns widths
+--set numwidth 12  -- 12 is the length for numbers 
+--set headsep off
+-- after 12.2:
+set markup csv on
 spool students.csv
 
 SELECT
