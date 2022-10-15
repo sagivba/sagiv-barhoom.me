@@ -1,8 +1,8 @@
 ---   
 layout: post
-title: "Surrogate Primery Key using Identity column, GUID or SEQUENCE"
-subtitle: "Collecting info using explain-plan, ASH reprot and AWR report"
-date: 2020-02-17
+title: "options for surrogate_PK_Oracle_19"
+subtitle: "Surrogate Primery Key using Identity column, GUID or SEQUENCE"
+date: 2022-10-14
 background: '/img/posts/keys.jpg'
 categories: Oracle
 --- 
