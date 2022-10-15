@@ -1,6 +1,6 @@
 ---   
 layout: post
-title: "options for surrogate_PK_Oracle_19"
+title: "options for surrogate PK on Oracle 19"
 subtitle: "Surrogate Primery Key using Identity column, GUID or SEQUENCE"
 date: 2022-10-14
 background: '/img/posts/keys.jpg'
