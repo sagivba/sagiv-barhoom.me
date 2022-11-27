@@ -1,4 +1,4 @@
-# listagg - rows_to_delimited_strings
+# listagg - rows to delimited strings
 
 This is a little awkward that I did not know this before... 
 But I came across the `LISTAGG` function for the first time yesterday. 
