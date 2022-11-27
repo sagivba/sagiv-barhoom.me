@@ -27,7 +27,6 @@ the outpout:
         40 OPERATIONS     BOSTON        
 ```        
 ```sql
-
 select * from scott.emp  order by deptno fetch first 6 rows only;
 ```
 and the output:
@@ -48,6 +47,7 @@ and the output:
 Get list of dielemted values as one line:
 ```sql    
 select LISTAGG(dname, ',') csv_dnames from scott.dept;             --> 'ACCOUNTING,RESEARCH,SALES,OPERATIONS'
+
 select '^('||listagg(dname, '|')||')$' csv_dnames from scott.dept; --> ^(ACCOUNTING|RESEARCH|SALES|OPERATIONS)$
 ```
 when you suspect that the return string will be too long use  `ON OVERFLOW TRUNCATE`
@@ -57,18 +57,20 @@ To remove the overflow character count, you use the WITHOUT COUNT clause.
 for example:
 ```sql    
 select LISTAGG(dname, ',' ON OVERFLOW TRUNCATE '...' ) csv_dnames from scott.dept;  --> will tuncate the end of the string and concateinate to it '...'
+
 select LISTAGG(dname, ',' ON OVERFLOW TRUNCATE with count  ) csv_dnames from scott.dept; --> will add info on the number of the omitted values 
+```
 
 ## jobs for each dept:
  
  - This is supported from Oracle 19C 
- ```sql
+```sql
  select d.dname,   
        listagg (DISTINCT e.job,', ' on overflow truncate with count)  -- DISTINCT is supporter from 19C
                 within group (order by e.job) jobs                    -- here we order the csv list by jobs 
   from scott.dept d INNER JOIN  scott.emp e ON d.deptno = e.deptno     
  group by d.dname;
- ```
+```
 The output: 
 ```
 DNAME           JOBS
