@@ -1,3 +1,12 @@
+---
+layout: post
+title:  "LISTAGG - rows to delimited strings"
+author: "Sagiv Barhoom"
+date:   2022-11-25
+categories: ORACLE 
+background: ''
+---
+
 # listagg - rows to delimited strings
 
 This is a little awkward that I did not know this before... 
@@ -10,7 +19,7 @@ But I think you should try to avoid the usage of this function on such cases.
 Here are some examples of its use:
 we will use the table `emp` and `dept` form (`scott` schema)[https://www.orafaq.com/wiki/SCOTT]
 
-## Tables for thi demo
+## Tables for this demo
 - `scott.emp`
 - `scott.dept`
 Quick reminder:
