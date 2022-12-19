@@ -1,0 +1,15 @@
+Single quote inside of a quoted string is escaped with second single quote: 'don''t'. But better use Q literals: Q'[don't]'.
+
+SQL> select  'don''t',
+
+  2          q'[don't]'
+
+  3    from  dual
+
+  4  /
+
+'DON' Q'[DO
+
+----- -----
+
+don't don't
