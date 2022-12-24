@@ -35,7 +35,7 @@ print ( q[don't walk $ENV{HOME}_2\n]);      # --> dont walk /$ENV{HOME}_2\n <--n
 printf("don't walk %s\n",$ENV{HOME});       # --> dont walk /home/sagiv
 ```
  ## In PowerShell (and inrepilation)
- ``powershell
+```powershell
 Write-Output "don't go away!"                    # --> don't go away!
 Write-Output '"give me one million dollars..!!"' # --> "give me one million dollars..!!"
 Write-Output "don't walk $home"                  # --> dont walk /home/sagiv
