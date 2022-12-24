@@ -22,24 +22,24 @@ don't walk away! don't stay here
 The full explaination is [here](https://www.gnu.org/software/bash/manual/html_node/Double-Quotes.html)
 The behavior is very similar in Perl and PowerShell
 ```bash
-echo "don't walk $HOME"                     # --> dont walk /home/sagiv
-echo 'don\'t walk $HOME'                    # --> dont walk $HOME
-echo "don\'t walk ${HOME}_2"                # --> dont walk /home/sagiv_2
+echo "don't walk $HOME"                     # --> don't walk /home/sagiv
+echo 'don\'t walk $HOME'                    # --> don't walk $HOME
+echo "don\'t walk ${HOME}_2"                # --> don't walk /home/sagiv_2
 ```
 
 ## In Perl (and inrepilation)
 ```perl
-print ("don't walk $ENV{HOME}\n");          # --> dont walk /home/sagiv
-print (qq[don't walk $ENV{HOME}_2\n]);      # --> dont walk /home/sagiv_2
-print ( q[don't walk $ENV{HOME}_2\n]);      # --> dont walk /$ENV{HOME}_2\n <--no new line here
-printf("don't walk %s\n",$ENV{HOME});       # --> dont walk /home/sagiv
+print ("don't walk $ENV{HOME}\n");          # --> don't walk /home/sagiv
+print (qq[don't walk $ENV{HOME}_2\n]);      # --> don't walk /home/sagiv_2
+print ( q[don't walk $ENV{HOME}_2\n]);      # --> don't walk /$ENV{HOME}_2\n <--no new line here
+printf("don't walk %s\n",$ENV{HOME});       # --> don't walk /home/sagiv
 ```
  ## In PowerShell (and inrepilation)
 ```powershell
 Write-Output "don't go away!"                    # --> don't go away!
 Write-Output '"give me one million dollars..!!"' # --> "give me one million dollars..!!"
-Write-Output "don't walk $home"                  # --> dont walk /home/sagiv
-Write-Output 'don\'t walk $home'                 # --> dont walk $HOME
+Write-Output "don't walk $home"                  # --> don't walk /home/sagiv
+Write-Output 'don\'t walk $home'                 # --> don't walk $home
 ```
 
 
