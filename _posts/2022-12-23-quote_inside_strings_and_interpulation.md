@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Quote inside strings and inderpulation examples"
+title:  "Quote inside strings and interpulation examples"
 author: "Sagiv Barhoom"
 date:   2022-12-23
 categories: ORACLE,Bash,Perl,PowerShell 
 background: ''
 ---
-# Quote inside strings and inderpulation examples
+# Quote inside strings and interpulation examples
 
 ## quotes in sting using Oracle sql an plsql:
 Single quote inside of a quoted string is escaped with second single quote: 'don''t'. But better use Q literals: Q'[don't]'.
