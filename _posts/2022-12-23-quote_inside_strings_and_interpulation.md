@@ -8,7 +8,7 @@ background: ''
 ---
 # Quote inside strings and interpulation examples
 
-## quotes in sting using Oracle sql an plsql:
+## quotes in strings using Oracle sql and plsql:
 Single quote inside of a quoted string is escaped with second single quote: 'don''t'. But better use Q literals: Q'[don't]'.
 ```sql
 select  'don''t walk away!', q'[don't] stay here' from  dual;
