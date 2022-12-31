@@ -2,7 +2,7 @@
 layout: post
 title:  "When to use oracle partition tables"
 author: "Sagiv Barhoom"
-date:   2023-12-31
+date:   2022-12-31
 categories: ORACLE 
 background: '/img/posts/pivot.jpg'
 ---
