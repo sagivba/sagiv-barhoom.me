@@ -98,7 +98,7 @@ begin
    end if;
 end;
 ```
-### change job setiings
+### change job setings
 ```sql
     DBMS_SCHEDULER.SET_ATTRIBUTE
     ( NAME      => 'daily_dialer_report'
