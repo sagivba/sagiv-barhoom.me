@@ -48,7 +48,7 @@ a better solution can be implemented using *Interval partitioning*
 ## Hash partitioning
 Hash partitioning divides the data into partitions based on a hash value of the partitioning key. 
 The hash value is used to determine which partition the data belongs in.
-## when shoul we use Hash partitions?
+## when should we use Hash partitions?
 1. If we want to enable partial or full parallel partition-wise joins with likely equisized partitions.
 2. To distribute data evenly among the nodes of an MPP platform that uses Oracle Real Application Clusters. 
    Consequently, we can minimize interconnect traffic when processing internode parallel statements.
