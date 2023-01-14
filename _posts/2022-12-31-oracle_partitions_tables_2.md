@@ -48,14 +48,15 @@ a better solution can be implemented using *Interval partitioning*
 ## Hash partitioning
 Hash partitioning divides the data into partitions based on a hash value of the partitioning key. 
 The hash value is used to determine which partition the data belongs in.
-## when should we use Hash partitions?
+
+### when should we use Hash partitions?
 1. If we want to enable partial or full parallel partition-wise joins with likely equisized partitions.
 2. To distribute data evenly among the nodes of an MPP platform that uses Oracle Real Application Clusters. 
    Consequently, we can minimize interconnect traffic when processing internode parallel statements.
 3. when we use partition pruning and partition-wise joins according to a partitioning key that is mostly constrained by a distinct value or value list.
 4. To randomly distribute data to avoid I/O bottlenecks if you do not use a storage management technique that stripes and mirrors across all available devices.
 
-``sql 
+```sql 
 CREATE TABLE students_exercises_in_course
   ( student_id      NUMBER,
     exercise_date   DATE, 
@@ -71,6 +72,7 @@ PARTITION BY HASH(student_id)
 , PARTITION p4 TABLESPACE tbs4
 );
 ```
+
 Here we created a table which is spreaded on 4 tablespaces wnd devides the data by th hash of the student_id colomn.
 This partitioning asumes that most of our queries are on on students and not courses for example,
 
