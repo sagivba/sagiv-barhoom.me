@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Restore Deleted Packege Using Flashback Query"
+title:  "Restore Packege Using Flashback Query"
 author: "Sagiv Barhoom"
 date:   2017-05-12
 categories: ORACLE 
