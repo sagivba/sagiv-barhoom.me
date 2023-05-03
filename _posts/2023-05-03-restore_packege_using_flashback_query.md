@@ -6,7 +6,6 @@ date:   2017-05-12
 categories: ORACLE 
 ---
 
-
 # Restore Deleted Packege Using Flashback Query
 This post will help you to get source code of changed object using flashback query.
 
