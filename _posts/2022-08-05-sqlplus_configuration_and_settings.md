@@ -21,6 +21,7 @@ Here are some configurations and settings tips for Oracle SQLPLUS.
 * `set define off` -  turn variable substitution off - this is usfule when your script contatns '&' as characters.
 * `set feadback off` - unset the comment at the end of your listing that tells you how many rows were returned. 
 * `alter session set nls_date_format = 'yyyy-mm-dd hh24:mi:ss'`
+* `set markup html on spool on` + `spool file.html` - create html file
 
 ## Formatimg coloumns
 * COLUMN last_name format a20
