@@ -15,7 +15,7 @@ Remark: *Based on stored object statistics and estimated costs*
 1. Generate the plan
     ```sql
     EXPLAIN PLAN FOR
-    SELECT * FROM stg_tst_interest_sem_um1_vu a;
+    SELECT * FROM my_view a;
     ```
 
 2. Display the plan generated
@@ -28,7 +28,7 @@ Remark: *Based on stored object statistics and estimated costs*
 1. Run the query and gather statistics
     ```sql
     SELECT /*+ GATHER_PLAN_STATISTICS */  * 
-    FROM stg_tst_interest_sem_um1_vu a;
+    FROM my_view a;
     ```
 
 2. Display the plan generated
@@ -75,7 +75,7 @@ So how do we get it ?
 1. Add MONITOR hint
     ```sql
     SELECT /*+ MONITOR */ COUNT(*), AVG(salary)
-    FROM hr.employees
+    FROM my_view
     WHERE department_id = 50;
     ```
 
