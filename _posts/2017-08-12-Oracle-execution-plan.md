@@ -7,7 +7,7 @@ categories: ORACLE
 background: '/img/posts/pivot.jpg'
 ---
 
-#Oracle Execution Plan
+# Oracle Execution Plan
 
 ## A. View an execution plan 
 While an explain plan is what the optimizer *thinks* will happen when you run your query, the execution plan what *actually happened* when you ran the query.
