@@ -1,3 +1,4 @@
+---
 layout: post
 title:  "GATHER STATS HINT 101"
 author: "Sagiv Barhoom"
@@ -8,7 +9,7 @@ background: '/img/posts/randomnace.jpg'
 
 # some note on `GATHER_STATS`
  
-The GATHER_PLAN_STATISTICS hint is used to instruct Oracle to gather statistics for the specified table. 
+The `GATHER_PLAN_STATISTICS` hint is used to instruct Oracle to gather statistics for the specified table. 
 By providing this hint, we are explicitly telling Oracle to collect fresh statistics for the table. 
 This can help the query optimizer make better decisions when generating query execution plans.
 
