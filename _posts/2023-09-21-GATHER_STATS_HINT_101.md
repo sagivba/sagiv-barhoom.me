@@ -2,7 +2,7 @@
 layout: post
 title:  "GATHER STATS HINT 101"
 author: "Sagiv Barhoom"
-date:   2017-08-12
+date:   2023-09-21
 categories: ORACLE 
 background: '/img/posts/randomnace.jpg'
 ---
