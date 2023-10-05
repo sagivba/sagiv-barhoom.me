@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " Covertion to partition table - oracle 19c"
+title:  " Convertion to partition table - oracle 19c"
 author: "Sagiv Barhoom"
 date:   2023-01-04
 categories: ORACLE 
@@ -8,7 +8,7 @@ background: '/img/posts/pivot.jpg'
 ---
 # Covertion to partition table - oracle 19c
 
-## online covertion to partition table:
+## online convertion to partition table:
 A non-partitioned table can be converted to a partitioned table with a `MODIFY` clause added to the ALTER TABLE SQL statement.
 In addition, the keyword `ONLINE` can be specified, enabling concurrent DML operations while the conversion is ongoing.</br>
 *Also note for the `UPDATE INDEXES` clause*
