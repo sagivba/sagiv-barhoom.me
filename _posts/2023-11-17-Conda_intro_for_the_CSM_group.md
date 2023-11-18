@@ -11,14 +11,18 @@ background: '/img/posts/python.jpg'
 # Conda intro for the CSM research group
 [comment]: <>  (built with the help of chatgpt)
 
-Welcome to the exciting journey of learning and growing together as python developers! 
-Here's a guide to some essential topics that will help us navigate through our development tasks seamlessly using conda enviroments.
-we encourage  you to *Read and try while learning from this document*.
+Welcome to the exciting journey of learning and growing together as Python developers! 
+Here's a guide to some essential topics that will help us navigate through our development tasks seamlessly using conda environments.
+We encourage  you to *Read and try while learning from this document*.
 
 ## 1.  Assumptions
 1. You possess a basic understanding of Python.
 2. You are familiar with Anaconda/Miniconda, or at least have heard of it.
 3. You have a foundational knowledge of the Linux command line.
+4. All commands in this document are after loading our anaconda version
+   ```bash
+   module load anaconda/2023.7
+   ```
 
 ## 2.  Some terminology 
 ### 2.1 What is `conda`?
@@ -50,8 +54,10 @@ conda config --show-sources
 Two options
 - use a text editor like vim
 - use  `conda config` as seen below
+  
 ### 2.6. Our  `.condarc` Configuration
 Here's an example `.condarc` configuration:
+
 ```yml
 # our basic .condarc Configuration File
 
@@ -75,6 +81,7 @@ envs_dirs:
 
 ### 3. So let's start with the conda command...
 Make your interaction with Conda smooth and efficient with these commands. 
+
 #### 3.1 Helpful Commands
  **Getting Help:**
 ```bash 
@@ -106,9 +113,13 @@ conda install <package-name>
 ```    
 
 #### 3.5 conda init
-Most likely you do not need this on our team
-**Please! don't run it  unless you understand what your are doing.**
-Conda init is a command that facilitates the initialization of Conda for seamless integration with your shell environment. By running 'conda init', you enable Conda to set up the necessary configurations within your chosen shell (e.g., bash, zsh) so that Conda commands can be conveniently accessed and utilized directly from the command line. This initialization process enhances the user experience by ensuring a smooth and integrated workflow when working with Conda-managed environments and packages.
+Most likely you do not need this on our team.
+
+ **<span style="color: red;">Please! don't run it  unless you understand what your are doing.</span>**
+ 
+Conda init is a command that facilitates the initialization of Conda for seamless integration with your shell environment. 
+By running 'conda init', you enable Conda to set up the necessary configurations within your chosen shell (e.g., bash, zsh) so that Conda commands can be conveniently accessed and utilized directly from the command line. 
+This initialization process enhances the user experience by ensuring a smooth and integrated workflow when working with Conda-managed environments and packages.
 ```bash 
 conda init --dry-run        # Display what would have been done.
 conda init <shell-name>     # Initialize Conda for shell interaction.
@@ -134,9 +145,13 @@ Copying directories directly is not advised, but if necessary:
 ``` bash 
 conda info --envs
 cp -r path/of/original/env location/of/new/env
-```    
-
-
+```
+    
+##### 3.6.3 Cloning for self usage 
+If you want to clone the environment for self-use (and not for another member of the team):
+``` bash 
+conda create --name cloned_env --clone original_env
+```
 
 ### 4. F.A.Q
 ##### 4..1 Is a central `.condarc` possible?
