@@ -66,7 +66,8 @@ proxy_servers:
     http: http://proxy.cslab.openu.ac.il:80
     https: http://proxy.cslab.openu.ac.il:80
 
-# Disable SSL verification for package downloads (Note: Use cautiously in secure environments)
+# Disable SSL verification for package downloads
+# (Note: Use cautiously in secure environments)
 ssl_verify: False
 
 # Specify the directory for storing Conda packages
@@ -88,6 +89,7 @@ Make your interaction with Conda smooth and efficient with these commands.
 conda --help
 conda create --help
 ```
+
 #### 3.2 Using conda to edit .condarc
 We can also `conda config` command to edit  our `.condarc` file
 For example,  **changing prompt after activation**:
