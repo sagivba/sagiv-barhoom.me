@@ -78,7 +78,16 @@ pkgs_dirs:
 envs_dirs:
     - $HOME/conda/envs
 ```
-
+### 2.7 What is Conda channel?
+A "channel" refers to a repository or collection of packages. 
+Conda channels are used to distribute and access packages for installation.
+We can specify additional channels to search for packages using `--channel` or by changing `.condarc`
+Common conda channels include:
+1. Default Channels - These are the default repositories maintained by the conda development team.
+2. conda-forge - A community-driven collection of conda packages.
+   It often contains more up-to-date and additional packages.
+3. Bioconda - Specialized channel for bioinformatics software and tools.
+4. pytorch, tensorflow - Channels dedicated to specific libraries or frameworks like PyTorch or TensorFlow.
 
 ### 3. So let's start with the conda command...
 Make your interaction with Conda smooth and efficient with these commands. 
@@ -99,7 +108,8 @@ Take a look at your `.condarc` file before and after
 conda config --set changeps1 False
 ```
 
-#### 3.3 Create conda enviroment
+#### 3.3 Create and activate  conda environment
+##### 3.3.1  Create conda environment
 Here are some options that provide flexibility in tailoring environments to a  project needs.
 ```bash
 conda create --name myenv python=3.10            #  --> Specify Python Version
@@ -107,12 +117,29 @@ conda create --name myenv numpy pandas           # --> Install Specific Packages
 conda create --name myenv --file another_env.yml # --> Create from Environment File for clonning
 conda create --name newenv --clone existingenv   # --> Clone an Existing Environment
 ```
+##### 3.3.1  Activate conda environment
+* Conda Versions 4.4 and Later - use `conda activate`.
+  Example: `conda activate myenv`
 
-#### 3.4 Installing Conda Packages
+* Conda Versions Before 4.4 - Use source activate.
+  Example: `source activate myenv`
+
+
+#### 3.4 Installing and listing Conda Packages
 Installing Conda packages is a breeze. Just use the following command:
 ```bash
-conda install <package-name>
+source activate myenv
+conda install <package-name>  #
+source list 
 ```    
+
+#### 3.4.1 Other common usage of `conda install`
+```bash
+conda install packageName
+conda install packageName=1.2.3          # --> Install a Specific Version of a Package
+conda install packageName1 packageName2  # --> Install Multiple Packages
+conda install -c channelName packageName # --> Install Packages from a Specific Channel
+```
 
 #### 3.5 conda init
 Most likely you do not need this on our team.
@@ -130,16 +157,14 @@ conda init --reverse        # Undo the effects of the last conda init.
 ```   
 
 #### 3.6 Exporting and Cloning Environments
-##### 3.6.1 Our preferred method
+##### 3.6.1 Our preferred method - Export and Create New Environment
 - Export Environment Configuration
 - Create a New Environment
 - Recreate Environment from YAML File
-- Clone an Existing Environment
 ``` bash
 conda env export > environment.yml 
 conda create --name <env-name>
 conda create --name <env-name> --file environment.yaml
-conda create --name cloned_env --clone original_env
 ```
 
 ##### 3.6.2 Copying Directories - a less desirable method
