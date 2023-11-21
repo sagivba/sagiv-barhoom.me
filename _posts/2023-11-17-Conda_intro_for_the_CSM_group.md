@@ -96,7 +96,7 @@ Make your interaction with Conda smooth and efficient with these commands.
  **Getting Help:**
 ```bash 
 conda --help
-conda create --help
+conda env create --help
 ```
 
 #### 3.2 Using conda to edit .condarc
@@ -112,10 +112,10 @@ conda config --set changeps1 False
 ##### 3.3.1  Create conda environment
 Here are some options that provide flexibility in tailoring environments to a  project needs.
 ```bash
-conda create --name myenv python=3.10            #  --> Specify Python Version
-conda create --name myenv numpy pandas           # --> Install Specific Packages:
-conda create --name myenv --file another_env.yml # --> Create from Environment File for clonning
-conda create --name newenv --clone existingenv   # --> Clone an Existing Environment
+conda env create --name myenv python=3.10            #  --> Specify Python Version
+conda env create --name myenv numpy pandas           # --> Install Specific Packages:
+conda env create --name myenv --file another_env.yml # --> Create from Environment File for clonning
+conda env create --name newenv --clone existingenv   # --> Clone an Existing Environment
 ```
 ##### 3.3.1  Activate conda environment
 * Conda Versions 4.4 and Later - use `conda activate`.
@@ -163,8 +163,8 @@ conda init --reverse        # Undo the effects of the last conda init.
 - Recreate Environment from YAML File
 ``` bash
 conda env export > environment.yml 
-conda create --name <env-name>
-conda create --name <env-name> --file environment.yaml
+conda env create --name <env-name>
+conda env create --name <env-name> --file environment.yaml
 ```
 
 ##### 3.6.2 Copying Directories - a less desirable method
