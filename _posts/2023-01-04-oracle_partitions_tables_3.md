@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " Convertion to partition table - oracle 19c"
+title:  " Conversion to partition table - oracle 19c"
 author: "Sagiv Barhoom"
 date:   2023-01-04
 categories: ORACLE 
@@ -8,12 +8,12 @@ background: '/img/posts/pivot.jpg'
 ---
 # Covertion to partition table - oracle 19c
 
-## online convertion to partition table:
+## online conversion to partition table:
 A non-partitioned table can be converted to a partitioned table with a `MODIFY` clause added to the ALTER TABLE SQL statement.
 In addition, the keyword `ONLINE` can be specified, enabling concurrent DML operations while the conversion is ongoing.</br>
 *Also note for the `UPDATE INDEXES` clause*
 
-Here is an example of online convertion:
+Here is an example of online conversion:
 ```sql
 ALTER TABLE students MODIFY
   PARTITION BY RANGE (student_id) INTERVAL (100)
@@ -27,7 +27,7 @@ ALTER TABLE students MODIFY
  );
  ```
 
-### The  `UPDATE INDEXES` clause (taken from Oracle documantation)
+### The  `UPDATE INDEXES` clause (taken from Oracle documentation)
 1. This clause can be used to change the partitioning state of indexes and storage properties of the indexes being converted.
 2. The specification of the `UPDATE INDEXES` clause is optional.
    Indexes are maintained both for the online and offline conversion to a partitioned table.
@@ -43,16 +43,14 @@ ALTER TABLE students MODIFY
     - Prefixed means that the partition key columns are included in the index definition, 
       but the index definition is not limited to including the partitioning keys only.
 
-    - Bitmap indexes become local partitioned indexes, regardless whether they are prefixed or not.
+    - Bitmap indexes become local partitioned indexes, regardless of whether they are prefixed or not.
       Bitmap indexes must always be local partitioned indexes.
 
 *The conversion operation cannot be performed if there are domain indexes.*
 
 
- 
 
-
-## offline covertion to partition table:
+## offline conversion to partition table:
 
 1. Create a new partitioned table using the CREATE TABLE statement.
 2. Use the SELECT INTO statement to insert the data from the non-partitioned table into the partitioned table.
