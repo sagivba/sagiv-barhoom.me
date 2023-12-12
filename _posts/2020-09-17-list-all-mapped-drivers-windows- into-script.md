@@ -7,7 +7,7 @@ categories: Windows
 background: '/img/posts/window-driver.jpg'
 ---
 
-# list and edit all mapped drivers by CLI
+# `use net` - list and edit all mapped drivers by CLI
 This is the easiest way to mapp a new driver or to copy your configuration to another windows machine.
 
 ## List all maped drivers:
