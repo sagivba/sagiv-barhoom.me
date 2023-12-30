@@ -115,7 +115,7 @@ Here are some options that provide flexibility in tailoring environments to a  p
 conda env create --name myenv python=3.10            #  --> Specify Python Version
 conda env create --name myenv numpy pandas           # --> Install Specific Packages:
 conda env create --name myenv --file another_env.yml # --> Create from Environment File for clonning
-conda env create --name newenv --clone existingenv   # --> Clone an Existing Environment
+conda create --name newenv --clone existingenv   # --> Clone an Existing Environment
 ```
 ##### 3.3.1  Activate conda environment
 * Conda Versions 4.4 and Later - use `conda activate`.
