@@ -62,6 +62,7 @@ To export the environment configuration for cloning on another user usage, run:
 module load anaconda/2023.7
 source activate py11
 conda env export > p11.2023.11.22.yml
+# the output file can be any name you choose, but please give it '.yml' suffix
 ```
 
 ## Recipe 5. Clone Environment from Another User
