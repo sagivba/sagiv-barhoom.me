@@ -51,7 +51,7 @@ Employ this Recipe if you intend to experiment with upgrading existing Python mo
 Create a cloned environment for your personal use and customization:
 ```bash
 module load anaconda/2023.7
-conda env create --name cloned_env --clone py11
+conda create --name cloned_env --clone py11
 # cloned_env - is the name of the new environment, choose your name wisely ;-) 
 ```
 
