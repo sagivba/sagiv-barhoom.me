@@ -2,7 +2,7 @@
 layout: post
 title:  "Basic tmux shortcuts"
 author: "Sagiv Barhoom"
-date:   2020-04-06
+date:   2-04-06
 categories: Linux 
 background: '/img/posts/be-linux.jpg.jpg'
 ---
