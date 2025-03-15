@@ -2,7 +2,7 @@
 layout: post
 title:  "Proactive Detection of Potential Covering Indexes"
 author: "Sagiv Barhoom"
-date:   2017-08-12
+date:   2025-03-13
 categories: ORACLE 
 background: '/img/posts/pivot.jpg'
 ---
