@@ -52,9 +52,9 @@ Using Docker involves three key concepts that ensure consistency across differen
   ```bash
   docker run --rm teamcsm/csm:v1.3.7b1 csm --help
   ```
-### Detailed Installation Steps
-## Step 1: Download the CSM Docker Container
-### Note: Working Behind a Proxy
+## Detailed Installation Steps
+### Step 1: Download the CSM Docker Container
+  #### Note: Working Behind a Proxy
   If you're working in an environment with a network proxy (e.g., a university or institutional firewall), Docker may need to   be configured to access external resources.
   On Linux/macOS, create or edit the Docker systemd configuration:
   ```bash
@@ -86,7 +86,7 @@ Then add:
   ```
   You should see a line indicating that the image teamcsm/csm with the v1.3.7b1 tag is available locally.
 
-## Step 2: Run the Software
+### Step 2: Run the Software
 If your container name is `teamcsm/csm:v1.3.7b1`
 
 You can download the input file for the example from [here](/files/18crown6.mol)
@@ -112,17 +112,17 @@ csm_container_name exact c3 --input 18crown6.mol --output c3-results --keep-stru
 ```
 <strong> The result of csm should be: <b>10.2635</b></strong>
 
-Explanation:
+### Explanation:
 - `exact` - Use the exact algorithm for CSM calculation.
 - `C2` - The desired point group.
 - `--input` - Input molecular file (accepted formats: SDF, XYZ, MOL, PDB).
 - `--output` - Output directory where results will be saved.
 - `--keep-structure` - Use the structure preserving permutation algorithm to maintain the bonding structure of the molecule. This requires connectivity data in the molecular files.
-- `remove-hy` - Ignore the Hydrogen atoms in order to keep the calculation faster.
+- `remove-hy` - Ignore the Hydrogen atoms to keep the calculation faster.
 
 See all available commands here: https://github.com/continuous-symmetry-measure/csm
   
-## Step 3: Access Local Files (Recommended)
+### Step 3: Access Local Files (Recommended)
 To allow the software to read/write files from your computer, it's recommended to map a local folder into the container. Examples:
 ```bash
 docker run -it -v $(pwd):/data teamcsm/csm:v1.3.7b1 csm exact C2 --input /data/molecule.sdf --output /data/results
