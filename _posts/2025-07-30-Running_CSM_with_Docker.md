@@ -101,7 +101,7 @@ docker run -it teamcsm/csm:v1.3.7b1 csm exact c2 --input 18crown6.mol --output c
 # or using alias:
 csm_container_name exact c2 --input 18crown6.mol --output c2-results --keep-structure --remove-hy
 ```
-<strong> The result of csm should be: <b>0.0048</b></strong>
+The result of csm should be: <b  color="green">0.0048</b>
 
 Another example:
 ```bash
@@ -110,7 +110,7 @@ docker run -it teamcsm/csm:v1.3.7b1 csm exact c3 --input 18crown6.mol --output c
 # or using alias:
 csm_container_name exact c3 --input 18crown6.mol --output c3-results --keep-structure --remove-hy
 ```
-<strong> The result of csm should be: <b>10.2635</b></strong>
+The result of csm should be: <b color="green">10.2635</b>
 
 ### Explanation:
 - `exact` - Use the exact algorithm for CSM calculation.
