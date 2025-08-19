@@ -9,6 +9,7 @@ background: '/img/posts/be-linux.jpg.jpg'
 
 
 # Running the CSM Software with Docker
+
 ## General Background
 For full access to the source code and documentation, visit the GitHub repository: 
 https://github.com/continuous-symmetry-measure/csm
@@ -79,8 +80,7 @@ Using Docker involves three key concepts that ensure consistency across differen
   <strong>Settings > Resources > Proxies </strong>and set your proxy configuration there.
   Ensure that you replace `proxy.example.com:8080` with your actual proxy address.
 
-# How to ownload the CSM Docker Container?
-
+#### How to download the CSM Docker Container?
 Run the following command in your terminal:
 ```bash
 docker pull teamcsm/csm:v1.3.7b1
@@ -125,8 +125,7 @@ C2 SYMMETRY: 0.004770
 CSM by formula: 0.004770
 ```
 
-
-### Example 2: Running CSM with C<sub>3</sub> symmetry group
+#### Example 2: Running CSM with C<sub>3</sub> symmetry group
 ```bash
 # directly
 docker run -it -v ${PWD}:/data teamcsm/csm:v1.3.7b1 csm exact c3 --input 18crown6.mol --output c3-results --keep-structure --remove-hy
@@ -135,8 +134,7 @@ csm_container_name exact c3 --input 18crown6.mol --output c3-results --keep-stru
 ```
 Expected result: `C3 SYMMETRY: 10.2635`
 
-
-### Explanation:
+#### Explanation:
 - `docker run -it` - Runs the container interactively with a terminal.
 - `-v ${PWD}:/data` - Mounts the current working directory into the container at path /data,
   so input and output files are accessible.
