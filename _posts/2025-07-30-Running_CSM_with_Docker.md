@@ -52,7 +52,7 @@ Using Docker involves three key concepts that ensure consistency across differen
   ```bash
   docker run --rm teamcsm/csm:v1.3.7b1 csm --help
   ```
- 
+
 ## Detailed Installation Steps
 
 ### Step 1: Download the CSM Docker Container
