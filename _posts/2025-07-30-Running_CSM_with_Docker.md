@@ -90,29 +90,51 @@ Then add:
 If your container name is `teamcsm/csm:v1.3.7b1`
 
 You can download the input file for the example from [here](/files/18crown6.mol)
-You may want to create an alias:
+On Linux you may want to create an alias:
 ```bash
-alias csm_container_name='docker run -it teamcsm/csm:v1.3.7b1 csm'
+alias csm_container_name='docker run -it -v ${PWD}:/data teamcsm/csm:v1.3.7b1 csm'
 ```
+#### Example 1: Running CSM with C<sub>2</sub> symmetry group
 To analyze a specific molecule (for example, in the C2 point group), use this command:
 ```bash
 # directly
-docker run -it teamcsm/csm:v1.3.7b1 csm exact c2 --input 18crown6.mol --output c2-results --keep-structure --remove-hy
-# or using alias:
+docker run -it -v ${PWD}:/data teamcsm/csm:v1.3.7b1 csm exact c2 --input /data/18crown6.mol --output /data/c2-results --keep-structure --remove-hy
+
+# or using the alias (on Linux):
 csm_container_name exact c2 --input 18crown6.mol --output c2-results --keep-structure --remove-hy
 ```
-The result of csm should be: <b  color="green">0.0048</b>
+Expected result: `C2 SYMMETRY: 0.004770`
 
-Another example:
+Below is a full example of a CSM execution and its output:
+```powershell
+PS C:\Users\csm_openu> docker run -it -v ${PWD}:/data teamcsm/csm:v1.3.7b1 csm exact c2 --input /data/18crown6.mol --output /data/c2-results --keep-structure --remove-hy
+CSM version 1.3.7b1
+exact c2 --input /data/18crown6.mol --output /data/c2-results --keep-structure --remove-hyMolecule: 18crown6.mol
+1 group of length 6
+1 group of length 12
+The permutation found maintains 100.0% of the original molecule's structure
+The permutation found contains 0 invalid cycles. 100.00% of the molecule's atoms are in legal cycles
+There are 9  cycles of length 2
+C2 SYMMETRY: 0.004770
+CSM by formula: 0.004770
+```
+
+
+### Example 2: Running CSM with C<sub>3</sub> symmetry group
 ```bash
 # directly
-docker run -it teamcsm/csm:v1.3.7b1 csm exact c3 --input 18crown6.mol --output c3-results --keep-structure --remove-hy
-# or using alias:
+docker run -it -v ${PWD}:/data teamcsm/csm:v1.3.7b1 csm exact c3 --input 18crown6.mol --output c3-results --keep-structure --remove-hy
+# or using the alias (on Linux):
 csm_container_name exact c3 --input 18crown6.mol --output c3-results --keep-structure --remove-hy
 ```
-The result of csm should be: <b color="green">10.2635</b>
+Expected result: `C3 SYMMETRY: 10.2635`
+
 
 ### Explanation:
+- `docker run -it` - Runs the container interactively with a terminal.
+- `-v ${PWD}:/data` - Mounts the current working directory into the container at path /data,
+  so input and output files are accessible.
+- teamcsm/csm:v1.3.7b1` - The name and version tag of the Docker image to use.
 - `exact` - Use the exact algorithm for CSM calculation.
 - `C2` - The desired point group.
 - `--input` - Input molecular file (accepted formats: SDF, XYZ, MOL, PDB).
@@ -122,13 +144,6 @@ The result of csm should be: <b color="green">10.2635</b>
 
 See all available commands here: https://github.com/continuous-symmetry-measure/csm
   
-### Step 3: Access Local Files (Recommended)
-To allow the software to read/write files from your computer, it's recommended to map a local folder into the container. Examples:
-```bash
-docker run -it -v $(pwd):/data teamcsm/csm:v1.3.7b1 csm exact C2 --input /data/molecule.sdf --output /data/results
-```
-This command maps your current directory to /data inside the container.
-
 ## Useful Links
 - GitHub Repository: https://github.com/continuous-symmetry-measure/csm
 - Docker Hub Page: https://hub.docker.com/r/teamcsm/csm
