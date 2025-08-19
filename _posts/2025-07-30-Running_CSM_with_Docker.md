@@ -52,8 +52,11 @@ Using Docker involves three key concepts that ensure consistency across differen
   ```bash
   docker run --rm teamcsm/csm:v1.3.7b1 csm --help
   ```
+ 
 ## Detailed Installation Steps
+
 ### Step 1: Download the CSM Docker Container
+
   #### Note: Working Behind a Proxy
   If you're working in an environment with a network proxy (e.g., a university or institutional firewall), Docker may need to   be configured to access external resources.
   On Linux/macOS, create or edit the Docker systemd configuration:
@@ -61,7 +64,7 @@ Using Docker involves three key concepts that ensure consistency across differen
   sudo mkdir -p /etc/systemd/system/docker.service.d
   sudo nano /etc/systemd/system/docker.service.d/http-proxy.conf
   ```
-Then add:
+  Then add:
   ```ini
   [Service]
     Environment="HTTP_PROXY=http://proxy.example.com:8080/"
@@ -75,16 +78,19 @@ Then add:
   On Windows or macOS with Docker Desktop, go to:
   <strong>Settings > Resources > Proxies </strong>and set your proxy configuration there.
   Ensure that you replace `proxy.example.com:8080` with your actual proxy address.
-  Run the following command in your terminal:
-  ```bash
-  docker pull teamcsm/csm:v1.3.7b1
-  ```
-  This will download version v1.3.7b1 of the CSM software to your machine.
-  To verify the image was successfully downloaded, run:
-  ```bash
-  docker images | grep teamcsm/csm
-  ```
-  You should see a line indicating that the image teamcsm/csm with the v1.3.7b1 tag is available locally.
+
+# How to ownload the CSM Docker Container?
+
+Run the following command in your terminal:
+```bash
+docker pull teamcsm/csm:v1.3.7b1
+```
+This will download version v1.3.7b1 of the CSM software to your machine.
+To verify the image was successfully downloaded, run:
+```bash
+docker images | grep teamcsm/csm
+```
+You should see a line indicating that the image teamcsm/csm with the v1.3.7b1 tag is available locally.
 
 ### Step 2: Run the Software
 If your container name is `teamcsm/csm:v1.3.7b1`
