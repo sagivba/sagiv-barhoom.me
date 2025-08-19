@@ -57,7 +57,7 @@ Using Docker involves three key concepts that ensure consistency across differen
 
 ### Step 1: Download the CSM Docker Container
 
-  #### Note: Working Behind a Proxy
+#### Note: Working Behind a Proxy
   If you're working in an environment with a network proxy (e.g., a university or institutional firewall), Docker may need to   be configured to access external resources.
   On Linux/macOS, create or edit the Docker systemd configuration:
   ```bash
