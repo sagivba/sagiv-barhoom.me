@@ -2,7 +2,7 @@
 layout: post
 title:  "Preparing Oracle Linux VirtualBox for Oracle Database Installation"
 author: "Sagiv Barhoom"
-date:   2025-09-30
+date:   2025-09-29
 categories: ORACLE,Linux 
 background: '/img/posts/be-linux.jpg.jpg'
 ---
