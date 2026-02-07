@@ -22,6 +22,16 @@ Repository URL:
 
 ## High-Level Flow Overview
 
+Before diving into the concrete cases, it is important to understand that Git always works with three distinct states of your project:
+
+* Working area – your regular working directory, where you edit files, run scripts, generate results, and experiment. Changes here are not yet part of Git history.
+
+* Staging area – an intermediate area where changes are placed after running git add. This is where you explicitly decide which modifications belong to the next logical step.
+
+* Committed state – after running git commit, the staged changes are permanently recorded in the repository history as a checkpoint.
+
+Understanding these three states clarifies why changes you make are not automatically committed, and why git add is a deliberate and important step in the workflow.
+
 ### Case 1: Starting a new project
 
 ```
@@ -52,6 +62,8 @@ You already have a directory with files and results, but no version control. Run
  
 
 ### Case 3: Working on an existing project from GitHub
+In this case, the project already exists on GitHub,but you do not have it locally yet, and you have permission to contribute code. 
+You want to download the repository to your machine and start working on it.
 
 There are two common situations:
 
@@ -92,7 +104,9 @@ In all cases, the local workflow (status -> add -> commit -> push) is the same; 
 
 * After completing a clear, meaningful step in your work
 * Each commit should represent one coherent research checkpoint
-* Think of commits as entries in a lab notebook
+* Think of commits as entries in a lab notebook.
+  Writing a clear and meaningful commit message is essential:
+  commit messages are the key to understanding what changed at each stage and why, both for future you and for anyone else reading the project history.
 
 ### When to push
 
@@ -152,8 +166,14 @@ From this point on, Git observes changes-even if they are scientific data files 
 
 
 ## 2. `git status` - Check Repository State
+ ```
+git status # or 
+git status –s
+```
 This is your primary visibility tool. It tells you what has changed since the last recorded step. 
 For our work, it is useful to run this often, even if you are not yet ready to commit.
+The -s (or --short) flag shows a compact status output, which is often easier to read during daily work. 
+It summarizes file states using short codes (for example M for modified, A for added), making it convenient when checking status frequently.
 
 ## 3. Make Changes - Do the Research Work
 
