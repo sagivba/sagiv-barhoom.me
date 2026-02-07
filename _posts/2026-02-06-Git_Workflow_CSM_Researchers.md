@@ -205,7 +205,9 @@ It serves as backup and continuity for the group-not public publication.
 ## 7. `git tag` - Mark Released Versions
 
 ```
+git tag --list
 git tag v1.0
+git push origin --tags
 ```
 
 A tag marks a **released version** of the project. 
