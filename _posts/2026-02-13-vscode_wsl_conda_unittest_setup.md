@@ -3,7 +3,7 @@ layout: post
 title:  VSCode + WSL + Conda Setup (with unittest + Tasks)"
 author: "Sagiv Barhoom"
 date:   2026-02-13
-categories: Chemistry 
+categories: python 
 ---
 
 # VSCode + WSL + Conda Setup (with unittest + Tasks)
