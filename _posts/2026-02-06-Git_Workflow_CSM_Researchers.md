@@ -146,7 +146,12 @@ GitHub will now show you the repository URL, which you will use locally.
 ### Connecting your local project to GitHub
 
 After running `git init` locally and creating at least one commit, you connect your project to GitHub:
+#### ssh
+```
+git remote add origin git@github.com:continuous-symmetry-measure/pdbprep.git
+```
 
+#### https
 ```
 git remote add origin https://github.com/continuous-symmetry-measure/pdbprep.git
 ```
