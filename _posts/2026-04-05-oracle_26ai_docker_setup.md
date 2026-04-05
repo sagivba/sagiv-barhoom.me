@@ -4,7 +4,7 @@ title:  "Oracle 26AI Docker Setup - Fast Hands-On Guide for Local AI Database"
 author: "Sagiv Barhoom"
 date:   2026-04-05
 categories: ORACLE
-background: '/img/posts/oracle26ai-docker.jpg'
+background: '/img/posts/oracle26ai-docker.png'
 ---
 
 # Oracle 26AI Docker Setup - Fast Hands-On Guide for Local AI Database (Select AI Ready)
