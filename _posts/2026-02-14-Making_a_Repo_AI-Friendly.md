@@ -4,6 +4,7 @@ title:  "Making a Repo AI-Friendly"
 author: "Sagiv Barhoom"
 date:   2026-02-14
 categories: python 
+/img/posts/repo_AI_ready.png
 ---
 # Making a Repo AI-Friendly
 This note describes a simple way to use **Codex (web UI)** to implement changes on top of a **GitHub repo** while keeping diffs small, tests green, and merges boring.
