@@ -9,11 +9,15 @@ background: '/img/posts/randomnace.jpg'
 
 # COMMENT ON TABLE, COMMENT ON COLUMN, and ANNOTATIONS
 
-This is the first of two posts on this topic, in the context of Oracle Database. `ANNOTATIONS` are a relatively new feature and are available starting with Oracle Database 19c Release Update 19.28. In this post, I will focus on the basics: what the difference is between `COMMENT ON TABLE`, `COMMENT ON COLUMN`, and `ANNOTATIONS`, and when to use each one. In the next post, I will go deeper into `ANNOTATIONS`, show how they look in practice, and where they provide more than a regular comment.
+This is the first of two posts on this topic, in the context of Oracle Database. `ANNOTATIONS` are a relatively new feature and are available starting with Oracle Database 19c Release Update 19.28. 
+In this post, I will focus on the basics: 
+what the difference is between `COMMENT ON TABLE`, `COMMENT ON COLUMN`, and `ANNOTATIONS`, and when to use each one.
+In the next post, I will go deeper into `ANNOTATIONS`, show how they look in practice, and where they provide more than a regular comment.
 
-In the post on `users_demo`, I used a simple table for demonstration purposes. I will use the same table here to explain, in a practical way, the difference between `COMMENT ON TABLE`, `COMMENT ON COLUMN`, and `ANNOTATIONS`.
+In the post on `users_demo`, I used a simple table for demonstration purposes. 
+I will use the same table here to explain, in a practical way, the difference between `COMMENT ON TABLE`, `COMMENT ON COLUMN`, and `ANNOTATIONS`.
 
-At first glance, these three mechanisms may look similar, but in practice they serve different purposes.
+At first glance, these three mechanisms may look similar, but in practice, they serve different purposes.
 
 ## COMMENT ON TABLE
 
@@ -27,7 +31,7 @@ So if someone opens the schema and wants to understand what `users_demo` is, a t
 
 `COMMENT ON COLUMN` does the same thing, but at the column level.
 
-Here the goal is to explain the meaning of a specific column, especially when the column name is not clear enough on its own. This can be a short description of the content, an explanation of expected values, or a business distinction that is not obvious from the name alone.
+Here, the goal is to explain the meaning of a specific column, especially when the column name is not clear enough on its own. This can be a short description of the content, an explanation of expected values, or a business distinction that is not obvious from the name alone.
 
 For example, if there is a column called `status`, a comment can be used to briefly explain which values appear there and what they mean in general.
 
@@ -37,7 +41,9 @@ Again, the main goal here is human-oriented documentation.
 
 `ANNOTATIONS` are meant for a different use case.
 
-Instead of free text that someone reads to understand the schema, an annotation stores more structured metadata. This information does not have to be only for humans. It can also be consumed by code, an internal tool, a UI, or even AI and LLM-based systems.
+Instead of free text that someone reads to understand the schema, an annotation stores more structured metadata. 
+This information does not have to be only for humans. 
+It can also be consumed by code, an internal tool, a UI, or even AI and LLM-based systems.
 
 In other words, a comment explains. An annotation describes metadata.
 
@@ -116,7 +122,7 @@ ALTER TABLE users_demo
   );
 ```
 
-Here this is no longer just free text for a human reader. This is metadata with a name and a value.
+Here, this is no longer just free text for a human reader. This is metadata with a name and a value.
 
 An annotation can also describe business context, including the relationship between tables, for example that one table is the master of another, or that a table belongs to a certain business domain. Still, it is better to treat this as metadata and not as a replacement for foreign keys, constraints, or the data model itself.
 
