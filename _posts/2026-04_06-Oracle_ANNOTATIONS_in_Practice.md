@@ -7,6 +7,7 @@ categories: ORACLE
 background: '/img/posts/randomnace.jpg'
 ---
 
+
 # Working with ANNOTATIONS in Oracle Database
 
 In the previous post, I focused on the difference between `COMMENT ON TABLE`, `COMMENT ON COLUMN`, and `ANNOTATIONS`. This time, I will focus only on `ANNOTATIONS`: how to define them, how to change them, and what kinds of metadata they are useful for in practice.
