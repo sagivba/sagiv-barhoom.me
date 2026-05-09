@@ -38,19 +38,18 @@ Production is not part of this flow. It runs on a separate server, so it is not 
 
 ## Table of contents
 
-- [Why not work in the same directory](#why-not-work-in-the-same-directory)
-- [Why Git Worktree](#why-git-worktree)
-- [Creating a Dev environment for Codex](#creating-a-dev-environment-for-codex)
-- [Separating Docker Compose environments](#separating-docker-compose-environments)
-- [Workflow with Codex CLI](#workflow-with-codex-cli)
-- [Task structure for Codex](#task-structure-for-codex)
-- [Quick tests and full tests](#quick-tests-and-full-tests)
-- [A parameterized test script](#a-parameterized-test-script)
-- [QA testing before merge](#qa-testing-before-merge)
-- [After merging to main](#after-merging-to-main)
-- [Rolling this out gradually](#rolling-this-out-gradually)
-
-## Why not work in the same directory
+- [1. Why not work in the same directory](#1-why-not-work-in-the-same-directory)
+- [2. Why Git Worktree](#2-why-git-worktree)
+- [3. Creating a Dev environment for Codex](#3-creating-a-dev-environment-for-codex)
+- [4. Separating Docker Compose environments](#4-separating-docker-compose-environments)
+- [5. Workflow with Codex CLI](#5-workflow-with-codex-cli)
+- [6. Task structure for Codex](#6-task-structure-for-codex)
+- [7. Quick tests and full tests](#7-quick-tests-and-full-tests)
+- [8. A parameterized test script](#8-a-parameterized-test-script)
+- [9. QA testing before merge](#9-qa-testing-before-merge)
+- [10. After merging to main](#10-after-merging-to-main)
+- [11. Rolling this out gradually](#11-rolling-this-out-gradually)
+## 1. Why not work in the same directory
 
 It is possible to run Codex CLI in the same directory where manual testing is done, but that creates an unhealthy mix of responsibilities.
 
@@ -66,7 +65,7 @@ If manual testing happens in that same directory, it becomes harder to know what
 
 Separating Dev from QA solves that. Codex gets its own workspace, and manual testing gets a separate one.
 
-## Why Git Worktree
+## 2. Why Git Worktree
 
 One way to solve this is to use two separate clones:
 
@@ -90,7 +89,7 @@ For example:
 
 This gives the same practical separation as an additional clone, without duplicating the whole repository.
 
-## Creating a Dev environment for Codex
+## 3. Creating a Dev environment for Codex
 
 Assume the existing repository is here:
 
@@ -143,7 +142,7 @@ Manual testing happens under:
 ~/src/qa/my_project
 ```
 
-## Separating Docker Compose environments
+## 4. Separating Docker Compose environments
 
 In this project, I do not use a local virtualenv. Running the app and running the tests both happen through Docker Compose, so the Dev and QA separation should also exist at the Compose level.
 
@@ -196,7 +195,7 @@ This is useful when the environments need different ports, environment variables
 
 At the beginning, if there is no real difference between the environments, using the same compose file with a different project name is enough.
 
-## Workflow with Codex CLI
+## 5. Workflow with Codex CLI
 
 Start in the Dev environment:
 
@@ -238,7 +237,7 @@ codex --sandbox workspace-write --ask-for-approval on-request
 
 While learning the workflow, I prefer not to give Codex too much freedom. It should be able to edit project files, but broader actions should still require approval.
 
-## Task structure for Codex
+## 6. Task structure for Codex
 
 Codex works better when the task is small and well-defined. For example:
 
@@ -267,7 +266,7 @@ Constraints:
 
 This structure matters more than the tool itself. Codex behaves better when the task is bounded, the success criteria are clear, and the constraints on the change are explicit.
 
-## Quick tests and full tests
+## 7. Quick tests and full tests
 
 During normal development, I do not always need to see the full `unittest` output. When everything passes, a short answer is enough.
 
@@ -294,7 +293,7 @@ scripts/test.sh full
 
 The same script can run against Dev or QA by changing `COMPOSE_PROJECT_NAME`.
 
-## A parameterized test script
+## 8. A parameterized test script
 
 Create one script:
 
@@ -370,7 +369,7 @@ COMPOSE_PROJECT_NAME=my_project_qa scripts/test.sh full
 
 This gives Codex one stable interface for tests, while still keeping Dev and QA separated.
 
-## QA testing before merge
+## 9. QA testing before merge
 
 After Codex finishes the work in Dev, and the quick tests pass, push the branch:
 
@@ -405,7 +404,7 @@ COMPOSE_PROJECT_NAME=my_project_qa scripts/test.sh full
 After that, do the manual testing.
 Only if the manual tests pass, continue to merge into `main`.
 
-## After merging to main
+## 10. After merging to main
 
 After the merge, update the QA environment back from `main`:
 
@@ -421,7 +420,7 @@ COMPOSE_PROJECT_NAME=my_project_qa scripts/test.sh quick
 
 This keeps the QA environment aligned with `main`.
 
-## Rolling this out gradually
+## 11. Rolling this out gradually
 
 Start with a very small task, not a real feature.
 
