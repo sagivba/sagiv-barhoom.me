@@ -4,6 +4,7 @@ title: "Moving from Codex Web to Codex CLI with Git Worktree and Docker Compose"
 author: "Sagiv Barhoom"
 date: 2026-05-08
 categories: codex
+background: '/img/posts/codex-cli-git-worktree-docker-compose.png'
 ---
 
 # Moving from Codex Web to Codex CLI with Git Worktree and Docker Compose
