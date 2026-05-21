@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Oracle 26AI Docker Setup - Fast Hands-On Guide for Local AI Database"
+title: "Oracle 26AI Docker Setup - Fast Hands-On Guide for Local AI Database"
 author: "Sagiv Barhoom"
-date:   2026-04-05
+date: 2026-04-05
 categories: ORACLE
 background: '/img/posts/oracle26ai-docker.png'
 ---
@@ -16,129 +16,187 @@ background: '/img/posts/oracle26ai-docker.png'
 The goal is to quickly set up an Oracle AI Database 26ai environment on a local machine using Docker, and reach a point where we can connect to the database and start working.
 
 The focus is on:
+
 - Fast setup
 - Minimal complexity
 - A sandbox environment for learning
 
 ## Architecture choice - available options
+
 There are three main approaches:
+
 - Direct installation on Windows 64-bit
 - VM setup (VirtualBox + Oracle Linux)
 - Docker with a prebuilt image
 
 For fast hands-on work, Docker was chosen for the following reasons:
+
 - Significantly faster setup
 - No need to install a full operating system
 - Database is ready to use within minutes
 - Ideal for POC and learning scenarios
 
 ## Prerequisites
+
 - WSL (Windows Subsystem for Linux) installed and configured
 - Docker installed
-- Oracle account (for Container Registry access)
+- Oracle account, for Container Registry access
 - At least 4GB RAM available
 
 ## Step 1 - Login to Oracle Container Registry
-Before running the command, make sure you have an Oracle (SSO) account and that you have accepted the repository terms in Oracle Container Registry (OCR). Without this, the docker pull will fail.
 
-Registration and terms acceptance (login and click Accept on database/free repo):
+Before running the command, make sure you have an Oracle SSO account and that you have accepted the repository terms in Oracle Container Registry.
+
+Without this, the `docker pull` command will fail.
+
+Registration and terms acceptance:
+
 https://container-registry.oracle.com/
 
-Then login using your Oracle SSO credentials:
+Login to Oracle Container Registry, open the `database/free` repository, and accept the terms.
+
+Then login from the terminal using your Oracle SSO credentials:
 
 ```bash
 docker login container-registry.oracle.com
 ```
 
 You will be prompted for:
-- Username: your Oracle SSO (email)
-- Password: your Oracle account password (not the DB password) - I used Google Authenticator token.
+
+- Username: your Oracle SSO email
+- Password: your Oracle account password, not the database password
+
+In my case, the login also required a Google Authenticator token.
 
 ## Step 2 - Pull the image
-Downloads the Oracle Database image from OCR. T
-The first pull may take several minutes.
+
+Download the Oracle Database image from Oracle Container Registry:
 
 ```bash
 docker pull container-registry.oracle.com/database/free:latest
 ```
 
+The first pull may take several minutes.
+
+For a quick lab setup, `latest` is convenient. For reproducible project work, prefer an explicit image tag once you decide which version you want to standardize on.
+
+You can inspect the local image after pulling it:
+
+```bash
+docker image inspect container-registry.oracle.com/database/free:latest \
+  --format '{{.RepoTags}} {{.Id}} {{.Created}}'
+```
+
 ## Step 3 - Create a volume
-A volume is required to persist database data outside the container. 
+
+A volume is required to persist database data outside the container.
+
 Without it, deleting the container may result in data loss, and recreating it will not reuse previous data automatically.
 
 Create a managed volume named `oracle26ai-data`:
+
 ```bash
 docker volume create oracle26ai-data
 ```
 
-To verify the volume exists and inspect it:
+To verify that the volume exists and inspect it:
+
 ```bash
 docker volume ls
 docker volume inspect oracle26ai-data
 ```
-**Important note:** 
-Volumes do not have an explicit size limit at creation time. 
-They are limited by available disk space or Docker Desktop configuration. 
-Ensure sufficient space if you plan to load data or build indexes.
+
+**Important note:** Docker volumes do not have an explicit size limit at creation time. They are limited by available disk space or by Docker Desktop configuration. Ensure sufficient space if you plan to load data or build indexes.
 
 ## Step 4 - Run the container
-This command:
-1. Creates and runs a new container in the background
-2. Exposes the DB port
-3. Sets an initial password
-4. Attaches the volume we created before.
+
+Set a local password before running the container.
+
+Do not reuse the example password in shared scripts, repositories, or real environments.
 
 ```bash
-docker run -d \                                        # Run container in detached mode
-  --name oracle26ai \                                  # Assign a friendly container name
-  -p 1521:1521 \                                       # Expose Oracle Net port locally
-  -e ORACLE_PWD=Oracle123 \                            # Set initial password for admin users
-  -v oracle26ai-data:/opt/oracle/oradata \             # Attach volume for persistent data storage
-  container-registry.oracle.com/database/free:latest   # Source image
+DB_PASSWORD='ChangeMe_26ai_123'
+```
+
+This command:
+
+1. Creates and runs a new container in the background
+2. Exposes the database port locally
+3. Sets the initial password for the Oracle administrative users
+4. Attaches the volume created earlier
+
+```bash
+docker run -d \
+  --name oracle26ai \
+  -p 1521:1521 \
+  -e ORACLE_PWD="${DB_PASSWORD}" \
+  -v oracle26ai-data:/opt/oracle/oradata \
+  container-registry.oracle.com/database/free:latest
 ```
 
 Official documentation:
+
 https://docs.oracle.com/en/database/oracle/oracle-database/26/deeck/
 
 Oracle Container Registry:
+
 https://container-registry.oracle.com/
 
 ## Step 5 - Check startup
+
+Follow the container logs:
+
 ```bash
 docker logs -f oracle26ai
+```
+
+Wait until the database is ready:
+
+```bash
 docker logs -f oracle26ai | grep 'DATABASE IS READY TO USE!'
 ```
 
 ## Step 6 - Verify container
+
 ```bash
 docker ps
 ```
 
 ## Connection details
-- Host: localhost
-- Port: 1521
-- Service: FREEPDB1
-- User: system
-- Password: Oracle123
-So with SQLcl you can connect by:
+
+- Host: `localhost`
+- Port: `1521`
+- Service: `FREEPDB1`
+- User: `system`
+- Password: the value you used in `DB_PASSWORD`
+
+With SQLcl, connect using:
+
 ```bash
- sql "system/Oracle123#@//localhost:1521/FREEPDB1"
+sql "system/${DB_PASSWORD}@//localhost:1521/FREEPDB1"
 ```
 
+If you open a new shell and the `DB_PASSWORD` variable is no longer defined, use the password you set when creating the container.
+
 ## Validation checks
+
 ```sql
-select banner_full from v$version;
+select banner_full
+from v$version;
+
 -- Expected output:
 -- Oracle AI Database 26ai Free Release 23.26.1.0.0
 ```
 
 ```sql
 show pdbs;
+
 -- Expected output:
 -- FREEPDB1 in READ WRITE mode
 ```
 
 ## Basic service management
+
 Once created, the container does not need to be recreated every time.
 
 | Command | What it does |
@@ -149,29 +207,39 @@ Once created, the container does not need to be recreated every time.
 | `docker ps -a` | Shows all containers, including running and stopped ones. |
 | `docker logs oracle26ai` | Displays the logs of the `oracle26ai` container. |
 | `docker logs -f oracle26ai` | Displays the container logs in real time and keeps following new log output. |
+
 ---
 
 ## Full backup and restore
-For a small demo environment, a simple approach works well: back up both configuration and data.
+
+For a small demo environment, a simple approach can be enough: back up both configuration and data.
 
 This includes:
-- Container configuration (JSON)
-- Volume data (tar.gz)
-- Runtime parameters
 
-Always stop the container before backing up the volume to ensure consistency.
+- Container configuration JSON
+- Volume metadata JSON
+- Image name
+- Volume data as a `tar.gz` archive
+
+This backup approach is suitable for lab/demo environments only.
+
+It is not an enterprise backup strategy and does not replace RMAN, Data Pump, archive log based recovery, or any tested production-grade backup process.
+
+Always stop the container before backing up the volume to avoid copying database files while they are being changed.
 
 ### Full backup script
 
 ```bash
 #!/bin/bash
+
 # Backup script for the oracle26ai Docker environment.
 # It saves container metadata, volume metadata, and the image name,
 # then stops the container, archives the Docker volume data,
 # and starts the container again.
+#
 # Sagiv Barhoom 2026
 
-set -e  # Exit immediately if a command fails.
+set -e
 
 CONTAINER_NAME=oracle26ai
 VOLUME_NAME=oracle26ai-data
@@ -179,95 +247,100 @@ BACKUP_ROOT=./backups
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 BACKUP_DIR=${BACKUP_ROOT}/${TIMESTAMP}
 
-mkdir -p "${BACKUP_DIR}"  # Creates the timestamped backup directory if it does not already exist.
+mkdir -p "${BACKUP_DIR}"
 
-# Save container configuration and metadata to a JSON file.
-docker inspect "${CONTAINER_NAME}" > "${BACKUP_DIR}/container_inspect.json"
+BACKUP_DIR_ABS=$(cd "${BACKUP_DIR}" && pwd)
 
-# Save Docker volume configuration and metadata to a JSON file.
-docker volume inspect "${VOLUME_NAME}" > "${BACKUP_DIR}/volume_inspect.json"
+docker inspect "${CONTAINER_NAME}" > "${BACKUP_DIR_ABS}/container_inspect.json"
+docker volume inspect "${VOLUME_NAME}" > "${BACKUP_DIR_ABS}/volume_inspect.json"
+docker inspect --format='{{.Config.Image}}' "${CONTAINER_NAME}" > "${BACKUP_DIR_ABS}/image_name.txt"
 
-# Save the image name used by the container to a text file.
-docker inspect --format='{{.Config.Image}}' "${CONTAINER_NAME}" > "${BACKUP_DIR}/image_name.txt"
-
-# Stop the container before backing up the volume data.
 docker stop "${CONTAINER_NAME}"
 
-if docker run --rm \                   # Runs a temporary container and removes it automatically when finished.
-  -v "${VOLUME_NAME}":/volume \        # Mounts the Docker volume into the temporary container at /volume.
-  -v "$(pwd)/${BACKUP_DIR}":/backup \  # Mounts the local backup directory into the temporary container at /backup.
-  alpine sh -c 'tar czf /backup/oradata.tar.gz -C /volume .'
-                                       # Uses Alpine Linux to create a compressed tar.gz archive
-                                       # of all data inside /volume and saves it into /backup.
-then
-  # Print success status and the backup file location.
-  echo "Backup completed successfully. Backup file: $(pwd)/${BACKUP_DIR}/oradata.tar.gz"
-else
-  # Print failure status and the backup directory location.
-  echo "Backup failed. Check backup directory: $(pwd)/${BACKUP_DIR}"
-  exit 1
-fi
+restart_container() {
+  docker start "${CONTAINER_NAME}" >/dev/null
+}
 
-# Start the container again after the backup is complete.
-docker start "${CONTAINER_NAME}"
+trap restart_container EXIT
+
+docker run --rm \
+  -v "${VOLUME_NAME}":/volume \
+  -v "${BACKUP_DIR_ABS}":/backup \
+  alpine sh -c 'tar czf /backup/oradata.tar.gz -C /volume .'
+
+trap - EXIT
+
+docker start "${CONTAINER_NAME}" >/dev/null
+
+echo "Backup completed successfully."
+echo "Backup directory: ${BACKUP_DIR_ABS}"
+echo "Backup file: ${BACKUP_DIR_ABS}/oradata.tar.gz"
 ```
 
 ### Restore script
 
 ```bash
 #!/bin/bash
+
 # Restore script for the oracle26ai Docker environment.
-# It reads the image name from the backup folder, creates the Docker volume,
+# It reads the image name from the backup folder, creates a Docker volume,
 # restores the archived Oracle data into the volume,
 # and starts a new oracle26ai container using the restored data.
+#
 # Sagiv Barhoom 2026
 
-set -e  # Exit immediately if a command fails.
+set -e
 
-BACKUP_DIR=$1
+BACKUP_DIR_INPUT=$1
+CONTAINER_NAME=oracle26ai
 NEW_VOLUME_NAME=oracle26ai-data
+HOST_PORT=1521
 
-# Validate that a backup directory argument was provided.
-if [ -z "${BACKUP_DIR}" ]; then
-  echo "Restore failed. Usage: $0 <backup_directory>"
+if [ -z "${BACKUP_DIR_INPUT}" ]; then
+  echo "Restore failed. Usage: $0 <backup-directory>"
   exit 1
 fi
 
-# Read the Docker image name from the backup metadata file.
+BACKUP_DIR=$(cd "${BACKUP_DIR_INPUT}" && pwd)
 IMAGE_NAME=$(cat "${BACKUP_DIR}/image_name.txt")
 
-# Create the Docker volume that will hold the restored Oracle data.
-docker volume create "${NEW_VOLUME_NAME}"
-
-if docker run --rm \                   # Runs a temporary container and removes it automatically when finished.
-  -v "${NEW_VOLUME_NAME}":/volume \    # Mounts the target Docker volume into the temporary container at /volume.
-  -v "$(pwd)/${BACKUP_DIR}":/backup \  # Mounts the selected backup directory into the temporary container at /backup.
-  alpine sh -c 'cd /volume && tar xzf /backup/oradata.tar.gz'
-                                       # Uses Alpine Linux to extract the compressed backup archive
-                                       # from /backup into the restored Docker volume at /volume.
-then
-  # Print restore success status and the restored volume name.
-  echo "Restore data extraction completed successfully. Restored volume: ${NEW_VOLUME_NAME}"
-else
-  # Print restore failure status and the backup archive location.
-  echo "Restore failed during data extraction. Backup file: $(pwd)/${BACKUP_DIR}/oradata.tar.gz"
+if docker ps -a --format '{{.Names}}' | grep -qx "${CONTAINER_NAME}"; then
+  echo "Restore failed. A container named ${CONTAINER_NAME} already exists."
+  echo "Remove or rename the existing container before restoring."
   exit 1
 fi
 
-# Start a new oracle26ai container using the restored volume and saved image name.
+if docker volume inspect "${NEW_VOLUME_NAME}" >/dev/null 2>&1; then
+  echo "Restore failed. A volume named ${NEW_VOLUME_NAME} already exists."
+  echo "Remove or rename the existing volume before restoring."
+  exit 1
+fi
+
+docker volume create "${NEW_VOLUME_NAME}"
+
+docker run --rm \
+  -v "${NEW_VOLUME_NAME}":/volume \
+  -v "${BACKUP_DIR}":/backup \
+  alpine sh -c 'cd /volume && tar xzf /backup/oradata.tar.gz'
+
 docker run -d \
-  --name oracle26ai \                  # Creates and starts a container named oracle26ai.
-  -p 1521:1521 \                       # Maps port 1521 from the container to port 1521 on the host.
-  -e ORACLE_PWD=Oracle123 \            # Sets the Oracle password inside the container.
-  -v "${NEW_VOLUME_NAME}":/opt/oracle/oradata \  # Mounts the restored Docker volume as the Oracle data directory.
+  --name "${CONTAINER_NAME}" \
+  -p "${HOST_PORT}:1521" \
+  -v "${NEW_VOLUME_NAME}":/opt/oracle/oradata \
   "${IMAGE_NAME}"
 
-# Print final restore status after the container starts.
-echo "Restore completed successfully. Container: oracle26ai, Volume: ${NEW_VOLUME_NAME}"
+echo "Restore completed successfully."
+echo "Container: ${CONTAINER_NAME}"
+echo "Volume: ${NEW_VOLUME_NAME}"
 ```
 
-### Notes
-- Suitable for lab/demo use, not an enterprise backup strategy
-- Can be extended using container_inspect.json for full recreation
-- Ensure names do not collide during restore
+Restoring the volume restores the database files as they were at backup time.
 
+It does not reset the database password. Use the same database credentials that were valid when the backup was created.
+
+### Notes
+
+- Suitable for lab/demo use, not an enterprise backup strategy
+- Can be extended using `container_inspect.json` for full recreation
+- Ensure container and volume names do not collide during restore
+- Validate the restored database before relying on it for additional work
