@@ -80,6 +80,7 @@ This is the basis for `ai-git-workflow-tools`.
 [https://github.com/sagivba/ai-git-workflow-tools](https://github.com/sagivba/ai-git-workflow-tools)
 
 I did not want a tool that hides Git. I wanted a tool that holds the process around Git.
+
 ## Workflow steps
 
 The workflow can be read as a sequence of small, explicit stages:
@@ -105,7 +106,8 @@ The prepare stage makes sure I am in the right repository, using the expected to
 | `agw_version` | Prints the loaded tool version, script path, tool root, and tool Git ref when available. This is read-only and does not require `--run`. |
 | `agw_status` | Prints the current repository root, current branch, current HEAD, and `git status --short`. This is read-only and does not require `--run`. |
 | `agw_start_task --task T010 --slug improve-usage-examples --run` | Creates the task branch for real. It runs roughly:<br><br>`git fetch --prune origin`<br>`git switch main`<br>`git pull --ff-only origin main`<br>`git status --short`<br>`git log --oneline --decorate -5`<br>`git switch -c manual/T010-improve-usage-examples`<br><br>It also checks that the working tree is clean and that the target branch does not already exist. |
-### cahnge
+
+### change
 change  the project using codex or other tools.
 
 ### review
