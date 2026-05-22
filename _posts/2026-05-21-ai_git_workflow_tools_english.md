@@ -56,7 +56,7 @@ They are the kind of problems that are easy to miss. Especially when working qui
 After a few rounds, the pattern became clear:
 
 ```text
-prepare -> change -> review -> test -> commit -> PR -> merge -> cleanup -> tag
+prepare -> change -> review -> test -> commit -> PR -> merge -> דsync-> cleanup -> tag
 ```
 
 In practice, it looked roughly like this:
@@ -80,6 +80,110 @@ This is the basis for `ai-git-workflow-tools`.
 [https://github.com/sagivba/ai-git-workflow-tools](https://github.com/sagivba/ai-git-workflow-tools)
 
 I did not want a tool that hides Git. I wanted a tool that holds the process around Git.
+## Workflow steps
+
+The workflow can be read as a sequence of small, explicit stages:
+
+```text
+prepare -> change -> review -> test -> commit -> PR -> merge -> cleanup -> tag
+```
+
+For each stage, I want to know two things:
+
+* what I run
+* what actually happens underneath
+
+The `agw_*` functions are not meant to hide Git.
+They are a workflow API around Git and GitHub.
+
+### prepare
+
+The prepare stage makes sure I am in the right repository, using the expected tool, starting from a clean and updated `main`, and creating a dedicated task branch.
+
+| What I run | What actually happens |
+|---|---|
+| `agw_version` | Prints the loaded tool version, script path, tool root, and tool Git ref when available. This is read-only and does not require `--run`. |
+| `agw_status` | Prints the current repository root, current branch, current HEAD, and `git status --short`. This is read-only and does not require `--run`. |
+| `agw_start_task --task T010 --slug improve-usage-examples --run` | Creates the task branch for real. It runs roughly:<br><br>`git fetch --prune origin`<br>`git switch main`<br>`git pull --ff-only origin main`<br>`git status --short`<br>`git log --oneline --decorate -5`<br>`git switch -c manual/T010-improve-usage-examples`<br><br>It also checks that the working tree is clean and that the target branch does not already exist. |
+### cahnge
+change  the project using codex or other tools.
+
+### review
+The review stage inspects the repository after the change and before staging anything.
+| What I run | What actually happens |
+|---|---|
+| `agw_review_output --run` | Runs:<br><br>`git branch --show-current`<br>`git status --short`<br>`git diff --stat`<br>`git diff --name-status`<br>`git diff --check`<br><br>This shows the current branch, changed files, diff size, file status, and whitespace or patch issues. |
+
+### test
+The test stage is project-specific.
+The tool does not try to guess how every project should be validated.
+
+
+### commit
+The commit stage stages explicit files and creates a controlled commit.
+The important point is that the command receives an explicit file list.
+It does not run `git add .`.
+
+| What I run | What actually happens |
+|---|---|
+| `agw_commit_controlled_change --message "Improve usage examples" --files "examples/usage.md" --run` | Refuses to commit directly on `main`.<br><br>If safe, it runs:<br><br>`git add <files>`<br>`git diff --cached --stat`<br>`git diff --cached --check`<br>`git commit -m "<message>"` |
+
+### PR
+The PR stage pushes the task branch and opens a Pull Request.
+| What I run | What actually happens |
+|---|---|
+| `agw_push_and_pr --title "T010 Improve usage examples" --body-file /tmp/T010-pr-body.md --run` | Refuses to push from `main`.<br><br>If safe, it runs:<br><br>`git branch --show-current`<br>`git status --short`<br>`git push -u origin HEAD`<br><br>If both `--title` and `--body-file` are provided, it also runs:<br><br>`gh pr create --base main --head <current-branch> --title <title> --body-file <body-file>` |
+
+### merge
+The merge stage remains explicit.
+The tool does not merge automatically, because merge is a review decision.
+
+| What I run | What actually happens |
+|---|---|
+| `gh pr checks <number>` | Shows the GitHub Actions/check status for the PR. |
+| `gh pr merge <number> --merge` | Merges the Pull Request through GitHub using a merge commit. |
+| GitHub Web merge button | Equivalent manual review path through the GitHub UI. |
+
+### sync
+The sync stage happens after the Pull Request was merged.
+At this point, GitHub has the new `main`, but my local repository may still be behind.
+Before deleting branches or creating a tag, I sync local `main` with `origin/main`.
+
+| What I run | What actually happens |
+|---|---|
+| `agw_post_merge_sync --run` | Checks that the working tree is clean, then runs:<br><br>`git fetch --prune origin`<br>`git switch main`<br>`git pull --ff-only origin main`<br>`git status --short`<br>`git log --oneline --decorate -5` |
+
+This step is important because cleanup and tagging should happen from the merged `main`, not from a stale local branch.
+### cleanup
+The cleanup stage syncs local `main` after the merge and deletes task branches only after they are confirmed as merged.
+| What I run | What actually happens |
+|---|---|
+| `agw_post_merge_sync --run` | Checks that the working tree is clean, then runs:<br><br>`git fetch --prune origin`<br>`git switch main`<br>`git pull --ff-only origin main`<br>`git status --short`<br>`git log --oneline --decorate -5` |
+| `agw_cleanup_branches --branch manual/T010-improve-usage-examples --run` | Inspects merged and unmerged branches, refuses to delete protected or unmerged branches, then deletes the local branch if safe:<br><br>`git branch --delete <branch>` |
+| `agw_cleanup_branches --branch manual/T010-improve-usage-examples --remote --run` | Inspects remote merge state, refuses to delete unmerged remote branches, then deletes the remote branch if safe:<br><br>`git push origin --delete <branch>` |
+
+### tag
+The tag stage creates a release marker only after the merge, local sync, cleanup, and documentation review are complete.
+| What I run | What actually happens |
+|---|---|
+| `agw_pre_tag_docs_review` | Prints a release-readiness checklist. This is read-only and does not require `--run`. |
+| `agw_create_tag --tag v0.7.1 --note "Add functions help reference" --run` | Verifies that the working tree is clean and that the tag does not already exist locally or remotely.<br><br>Then it runs:<br><br>`git fetch --prune origin`<br>`git switch main`<br>`git pull --ff-only origin main`<br>`git status --short`<br>`git log --oneline --decorate -5`<br>`git tag --list <tag>`<br>`git ls-remote --tags origin <tag>`<br>`git tag -a <tag> -m "<tag> - <note>"`<br>`git push origin <tag>`<br>`git tag --points-at HEAD`<br>`git show --no-patch --decorate <tag>`<br>`git ls-remote --tags origin <tag>` |
+
+### What this gives me
+The value is not that I type fewer commands.
+The value is that every repeated step becomes:
+
+* visible
+* consistent
+* dry-run first
+* guarded against common mistakes
+* easy to explain to another person or to an AI assistant
+
+Git is still Git.
+GitHub is still GitHub.
+
+The tool only gives the repeated workflow a stable shape.
+
 
 ## What the tool does
 
