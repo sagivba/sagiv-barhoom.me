@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "When a Remote Package Breaks After a Column Change — Even Though the Package Is VALID"
+title: "When a Remote Package Breaks After a Column Change - Even Though the Package Is VALID"
 author: "Sagiv Barhoom"
 date: 2026-08-04
 categories: ORACLE
-background: '/img/posts/oracle_dblink.jpg' 
+background: '/img/posts/oracle_dblink.png' 
 ---
 
 A local package failed to compile after a column was changed in a remote database, even though the related remote PL/SQL units were still marked as `VALID`.
