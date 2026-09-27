@@ -83,11 +83,12 @@ The first pull may take several minutes.
 For a quick lab setup, `latest` is convenient. For reproducible project work, prefer an explicit image tag once you decide which version you want to standardize on.
 
 You can inspect the local image after pulling it:
-
+{% raw %}
 ```bash
 docker image inspect container-registry.oracle.com/database/free:latest \
   --format '{{.RepoTags}} {{.Id}} {{.Created}}'
 ```
+{% endraw %}
 
 ## Step 3 - Create a volume
 
@@ -230,7 +231,7 @@ It is not an enterprise backup strategy and does not replace RMAN, Data Pump, ar
 Always stop the container before backing up the volume to avoid copying database files while they are being changed.
 
 ### Full backup script
-
+{% raw %}
 ```bash
 #!/bin/bash
 
@@ -278,9 +279,11 @@ echo "Backup completed successfully."
 echo "Backup directory: ${BACKUP_DIR_ABS}"
 echo "Backup file: ${BACKUP_DIR_ABS}/oradata.tar.gz"
 ```
+{% endraw %}
 
 ### Restore script
 
+{% raw %}
 ```bash
 #!/bin/bash
 
@@ -335,6 +338,7 @@ echo "Restore completed successfully."
 echo "Container: ${CONTAINER_NAME}"
 echo "Volume: ${NEW_VOLUME_NAME}"
 ```
+{% endraw %}
 
 Restoring the volume restores the database files as they were at backup time.
 
