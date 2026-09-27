@@ -23,6 +23,8 @@ The focus is on:
 
 ## Architecture choice - available options
 
+![Oracle 26ai Docker architecture overview](/img/posts/oracle-26ai-docker/architecture-overview.png)
+
 There are three main approaches:
 
 - Direct installation on Windows 64-bit
