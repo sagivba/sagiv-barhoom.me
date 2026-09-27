@@ -253,30 +253,9 @@ Oracle documentation:
 ## ORDS authorization and identity flow
 
 ORDS applies more than one security boundary before a database operation is executed.
-
+At a high level:
 ![ORDS MCP authorization and database identity flow](/img/posts/oracle-ords-mcp-vs-sqlcl-mcp/ords-authorization-identity-flow.png)
 
-At a high level:
-
-```text
-External caller
-     |
-     | OAuth 2.0 JWT
-     v
-ORDS MCP global authorization
-     |
-     | global MCP scope
-     v
-Pool authorization
-     |
-     | mcp.scope or mcp.role
-     v
-ORDS MCP Database Pool
-     |
-     | database user
-     v
-Oracle Database
-```
 
 The bearer token must first satisfy the ORDS MCP JWT profile and include the global MCP access scope:
 
