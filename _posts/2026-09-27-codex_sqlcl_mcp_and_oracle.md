@@ -4,7 +4,7 @@ title: "Using SQLcl as an MCP Server in Codex for Oracle Database"
 author: Sagiv Barhoom
 date: 2026-09-27
 categories: ORACLE
-background: /img/posts/codex-sqlcl-mcp-flow.png
+background: /img/posts/codex-sqlcl-mcp-and-oracle/codex-sqlcl-mcp-flow.png
 ---
 
 I am currently experimenting with MCP as part of a small Oracle development lab. The first goal is simple: let Codex work with an Oracle Database through SQLcl, while keeping the connection path and execution boundaries explicit.
@@ -19,7 +19,7 @@ This post covers three things:
 
 The setup shown here is based on the configuration used in my current `taskhub-oracle-codex-lab` project.
 
-![MCP setup flow from SQLcl installation to Codex](/img/posts/mcp-setup-flow-sqlcl-to-codex.png)
+![MCP setup flow from SQLcl installation to Codex](/img/posts/codex-sqlcl-mcp-and-oracle/mcp-setup-flow-sqlcl-to-codex.png)
 
 ## What is MCP?
 
@@ -224,7 +224,7 @@ I also would not assume that copying `~/.dbtools` to another machine is harmless
 
 The first useful MCP operation is to discover which SQLcl connections are available and then open one of them.
 
-![Listing and opening SQLcl saved connections through Codex](/img/posts/codex-sqlcl-connection-flow.png)
+![Listing and opening SQLcl saved connections through Codex](/img/posts/codex-sqlcl-mcp-and-oracle/codex-sqlcl-connection-flow.png)
 
 At a high level, the discovery flow is:
 
