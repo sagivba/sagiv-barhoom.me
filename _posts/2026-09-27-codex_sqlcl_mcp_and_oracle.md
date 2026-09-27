@@ -223,36 +223,10 @@ I also would not assume that copying `~/.dbtools` to another machine is harmless
 ## Listing and opening connections
 
 The first useful MCP operation is to discover which SQLcl connections are available and then open one of them.
+At a high level, the discovery flow is:
 
 ![Listing and opening SQLcl saved connections through Codex](/img/posts/codex-sqlcl-mcp-and-oracle/codex-sqlcl-connection-flow.png)
 
-At a high level, the discovery flow is:
-
-```text
-Codex
-  |
-  | connections_list
-  v
-SQLcl MCP Server
-  |
-  | saved connections
-  v
-SQLcl Connection Manager
-```
-
-Once a connection is selected, Codex asks SQLcl MCP to open it:
-
-```text
-Codex
-  |
-  | connect
-  v
-SQLcl MCP Server
-  |
-  | selected saved connection
-  v
-Oracle Database
-```
 
 Once connected, Codex can request operations through SQLcl MCP, such as schema inspection or SQL execution.
 
