@@ -7,6 +7,7 @@ categories: ORACLE
 background: '/img/posts/what-i-put-into-a-codex-development-task/task-contract.png'
 ---
 
+
 This post is part of my [TaskHub series](https://github.com/sagivba/sagiv-barhoom.me/blob/gh-pages/_posts/2026-09-30-taskhub-lab.md). In the [previous post](https://github.com/sagivba/sagiv-barhoom.me/blob/gh-pages/_posts/2026-10-09-specification-to-verified-oracle-implementation.md), I described how I move from a system specification to a verified Oracle implementation with Codex. Here I focus on how I structure one development task before handing it to Codex.
 
 I will use **Task 50 — Tasks / Subtasks API** as a running example. It covers creating, updating, and soft-deleting tasks and subtasks, including hierarchy rules, ownership checks, and task status behavior.
